@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "6958038956",
+    "project_id": "bookmobato-e5e2a",
+    "storage_bucket": "bookmobato-e5e2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6958038956:android:738a20bd0031231a3c4409",
+        "android_client_info": {
+          "package_name": "com.application.bookmobato"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApDYjtEPpQMPzVNAvooxp8VwsvvESLbyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
