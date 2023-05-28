@@ -3,14 +3,16 @@ package com.application.bookmobato.Librarian;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.application.bookmobato.R;
+import com.bumptech.glide.Glide;
 
 public class BookDetails extends AppCompatActivity {
 
     TextView title_input, author_input,genre_input,publish_input,pages_input,description_input;
-    String id, title, author, genre, publish, pages, description;
+    ImageView coverDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class BookDetails extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         if(bundle != null) {
+            Glide.with(this).load(bundle.getString("image")).into(coverDetails);
             title_input.setText(bundle.getString("title"));
             author_input.setText(bundle.getString("author"));
             genre_input.setText(bundle.getString("genre"));
@@ -38,5 +41,6 @@ public class BookDetails extends AppCompatActivity {
         publish_input = findViewById(R.id.publish_details);
         pages_input = findViewById(R.id.pages_details);
         description_input = findViewById(R.id.description_details);
+        coverDetails = findViewById(R.id.book_cover_details);
     }
 }

@@ -1,12 +1,12 @@
 package com.application.bookmobato.Librarian;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import com.application.bookmobato.R;
+import com.bumptech.glide.Glide;
 
 public class UpdateBookActivity extends AppCompatActivity {
 
@@ -23,18 +23,14 @@ public class UpdateBookActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        String imageUriString = bundle.getString("image");
-
-        Uri imageUri = Uri.parse(imageUriString);
-
         if(bundle != null) {
+            Glide.with(this).load(bundle.getString("image")).into(images_update);
             title_input.setText(bundle.getString("title"));
             author_input.setText(bundle.getString("author"));
             genre_input.setText(bundle.getString("genre"));
             publish_input.setText(bundle.getString("publishdate"));
             pages_input.setText(bundle.getString("numpages"));
             description_input.setText(bundle.getString("description"));
-            images_update.setImageURI(imageUri);
         }
     }
 

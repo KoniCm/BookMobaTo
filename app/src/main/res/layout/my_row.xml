@@ -24,7 +24,6 @@
                 android:id="@+id/place_holder_display"
                 android:layout_width="50dp"
                 android:layout_height="90dp"
-                android:background="@mipmap/book_cover"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
