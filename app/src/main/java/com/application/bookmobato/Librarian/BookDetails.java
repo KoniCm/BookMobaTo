@@ -34,8 +34,6 @@ public class BookDetails extends AppCompatActivity {
 
         findID();
 
-
-
         Bundle bundle = getIntent().getExtras();
 
         if(bundle != null) {
@@ -59,6 +57,7 @@ public class BookDetails extends AppCompatActivity {
         }
 
     }
+
     private void findID() {
         title_input = findViewById(R.id.title_details);
         author_input = findViewById(R.id.author_details);
@@ -68,6 +67,7 @@ public class BookDetails extends AppCompatActivity {
         description_input = findViewById(R.id.description_details);
         coverDetails = findViewById(R.id.book_cover_details);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -86,6 +86,7 @@ public class BookDetails extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void deleteOneRow() {
 
         String title = title_input.getText().toString();

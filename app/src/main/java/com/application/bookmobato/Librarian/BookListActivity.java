@@ -23,13 +23,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+
 public class BookListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     SwipeRefreshLayout swipeRefreshLayout;
-
     RecyclerView recyclerView;
     ArrayList<BookClasses> list;
     FloatingActionButton addBook;
-
     DatabaseReference dataBook;
     LibrarianCustomAdapter librarianCustomAdapter;
     SearchView searchView;
@@ -123,6 +122,7 @@ public class BookListActivity extends AppCompatActivity implements SwipeRefreshL
         });
         builder.create().show();
     }
+
     public void searchList(String text) {
         ArrayList<BookClasses> search = new ArrayList<>();
         for (BookClasses bookClasses : list) {

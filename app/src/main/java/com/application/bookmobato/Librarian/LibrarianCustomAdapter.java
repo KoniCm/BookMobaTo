@@ -1,10 +1,7 @@
 package com.application.bookmobato.Librarian;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,8 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
-
-import java.time.Instant;
 import java.util.ArrayList;
 
 public class LibrarianCustomAdapter extends RecyclerView.Adapter<LibrarianCustomAdapter.MyViewHolder> {

@@ -3,12 +3,10 @@ package com.application.bookmobato.Librarian;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -23,33 +21,29 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.application.bookmobato.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.net.URI;
 import java.text.DateFormat;
 import java.util.Calendar;
 
 public class AddingBookActivity extends AppCompatActivity {
 
+    /**
+     * Adding Book Information to the Firebase Realtime database
+     * */
+
     String title, author, genre, publishdate, numpages, description;
-
     TextInputEditText inputTitle, inputAuthor, inputGenre, inputPublishdate, inputNumpages, inputDescription;
-
     Button addBookInfo;
-
     ImageView upload_cover;
-
     String imgURL;
     Uri uri;
 
@@ -77,6 +71,7 @@ public class AddingBookActivity extends AppCompatActivity {
                     }
                 }
         );
+
         upload_cover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,29 +82,12 @@ public class AddingBookActivity extends AppCompatActivity {
         });
     }
 
-    private void findID() {
-        inputTitle = findViewById(R.id.inputTitle);
-        inputAuthor = findViewById(R.id.inputAuthor);
-        inputGenre = findViewById(R.id.inputGenre);
-        inputPublishdate = findViewById(R.id.inputPublishdate);
-        inputNumpages = findViewById(R.id.inputNumpages);
-        inputDescription = findViewById(R.id.inputDescription);
-        addBookInfo = findViewById(R.id.addBookBtn);
-        upload_cover = findViewById(R.id.upload_cover);
-    }
-
     private void insertData() {
-
         addBookInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                title = inputTitle.getText().toString();
-                author = inputAuthor.getText().toString();
-                genre = inputGenre.getText().toString();
-                publishdate = inputPublishdate.getText().toString();
-                numpages = inputNumpages.getText().toString();
-                description = inputDescription.getText().toString();
+                declarationOfInfo();
 
                 if(isInputEmpty(title,author,genre,publishdate,numpages,description)) {
                     Toast.makeText(AddingBookActivity.this, "Fill the empty field", Toast.LENGTH_SHORT).show();
@@ -150,12 +128,7 @@ public class AddingBookActivity extends AppCompatActivity {
     }
     private void uploadData() {
 
-        title = inputTitle.getText().toString();
-        author = inputAuthor.getText().toString();
-        genre = inputGenre.getText().toString();
-        publishdate = inputPublishdate.getText().toString();
-        numpages = inputNumpages.getText().toString();
-        description = inputDescription.getText().toString();
+        declarationOfInfo();
 
         String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 
@@ -187,7 +160,6 @@ public class AddingBookActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 DatePickerDialog datePicker = new DatePickerDialog(AddingBookActivity.this);
-
                 datePicker.show();
                 datePicker.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
 
@@ -244,5 +216,25 @@ public class AddingBookActivity extends AppCompatActivity {
             builder.create().show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void findID() {
+        inputTitle = findViewById(R.id.inputTitle);
+        inputAuthor = findViewById(R.id.inputAuthor);
+        inputGenre = findViewById(R.id.inputGenre);
+        inputPublishdate = findViewById(R.id.inputPublishdate);
+        inputNumpages = findViewById(R.id.inputNumpages);
+        inputDescription = findViewById(R.id.inputDescription);
+        addBookInfo = findViewById(R.id.addBookBtn);
+        upload_cover = findViewById(R.id.upload_cover);
+    }
+
+    private void declarationOfInfo() {
+        title = inputTitle.getText().toString();
+        author = inputAuthor.getText().toString();
+        genre = inputGenre.getText().toString();
+        publishdate = inputPublishdate.getText().toString();
+        numpages = inputNumpages.getText().toString();
+        description = inputDescription.getText().toString();
     }
 }

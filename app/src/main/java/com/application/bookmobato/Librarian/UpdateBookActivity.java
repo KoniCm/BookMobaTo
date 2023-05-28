@@ -7,19 +7,18 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.application.bookmobato.R;
-import com.application.bookmobato.SplashMain.MainActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,13 +44,13 @@ public class UpdateBookActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     StorageReference storageReference;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_book);
 
         findID();
+        datePickerDialogListener();
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -103,6 +102,25 @@ public class UpdateBookActivity extends AppCompatActivity {
         });
     }
 
+    private void datePickerDialogListener() {
+        updatePublishdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatePickerDialog datePicker = new DatePickerDialog(UpdateBookActivity.this);
+                datePicker.show();
+                datePicker.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        updatePublishdate.setText(year +"-"+ month +"-"+ day);
+
+                    }
+                });
+            }
+        });
+    }
+
     private void findID() {
         updateTitle = findViewById(R.id.inputTitle2);
         updateAuthor = findViewById(R.id.inputAuthor2);
@@ -137,6 +155,7 @@ public class UpdateBookActivity extends AppCompatActivity {
             }
         });
     }
+
     public void updateData() {
         title = updateTitle.getText().toString().trim();
         author = updateAuthor.getText().toString().trim();

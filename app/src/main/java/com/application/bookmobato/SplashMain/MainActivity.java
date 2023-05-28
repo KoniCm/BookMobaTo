@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.application.bookmobato.Librarian.BookListActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, BookListActivity.class);
+                Intent intent = new Intent(MainActivity.this, MainLoginActivity.class);
                 startActivity(intent);
             }
         },2500);

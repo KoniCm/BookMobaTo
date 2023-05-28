@@ -15,14 +15,17 @@
         android:theme="@style/Theme.Main"
         tools:targetApi="31">
         <activity
+            android:name=".MainLogin.MainLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".Librarian.BookDetails"
             android:exported="false"
-            android:parentActivityName=".Librarian.BookListActivity"/>
+            android:parentActivityName=".Librarian.BookListActivity" />
         <activity
             android:name=".Librarian.UpdateBookActivity"
             android:exported="false"
             android:label="Update Book"
-            android:parentActivityName=".Librarian.BookListActivity"/>
+            android:parentActivityName=".Librarian.BookListActivity" />
         <activity
             android:name=".Librarian.AddingBookActivity"
             android:exported="false"
