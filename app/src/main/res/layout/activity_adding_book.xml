@@ -26,7 +26,7 @@
                 android:padding="16dp">
 
                 <ImageView
-                    android:id="@+id/book_cover"
+                    android:id="@+id/upload_cover"
                     android:layout_width="wrap_content"
                     android:layout_height="145dp"
                     android:layout_gravity="center"
@@ -48,8 +48,7 @@
                         android:id="@+id/inputTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Title"
-                        android:inputType="text"/>
+                        android:hint="Title"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,8 +61,7 @@
                         android:id="@+id/inputAuthor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Author"
-                        android:inputType="text"/>
+                        android:hint="Author"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,8 +74,7 @@
                         android:id="@+id/inputGenre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Genre"
-                        android:inputType="text"/>
+                        android:hint="Genre"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,9 +87,7 @@
                         android:id="@+id/inputPublishdate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/calendar_ico"
-                        android:hint="Publish Date"
-                        android:inputType="none"/>
+                        android:hint="Publish Date"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,8 +100,7 @@
                         android:id="@+id/inputNumpages"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Number of Pages"
-                        android:inputType="number"/>
+                        android:hint="Number of Pages"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,8 +115,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Description"
                         android:lines="5"
-                        android:gravity="top"
-                        android:inputType="text"/>
+                        android:gravity="top"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,6 +125,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#43A047"
                     android:text="Submit"/>
 
             </LinearLayout>

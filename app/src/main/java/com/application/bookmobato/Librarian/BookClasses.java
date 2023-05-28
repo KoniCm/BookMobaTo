@@ -2,19 +2,24 @@ package com.application.bookmobato.Librarian;
 
 public class BookClasses {
 
-    String title, author, genre, publishdate, numpages, description;
+    String title, author, genre, publishdate, numpages, description, image;
 
     public BookClasses() {
 
     }
 
-    public BookClasses(String title, String author, String genre, String publishdate, String numpages, String description) {
+    public String getImage() {
+        return image;
+    }
+
+    public BookClasses(String title, String author, String genre, String publishdate, String numpages, String description, String image) {
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.publishdate = publishdate;
         this.numpages = numpages;
         this.description = description;
+        this.image = image;
     }
 
     public String getTitle() {

@@ -4,16 +4,21 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.application.bookmobato.R;
+import com.bumptech.glide.Glide;
+
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class LibrarianCustomAdapter extends RecyclerView.Adapter<LibrarianCustomAdapter.MyViewHolder> {
@@ -36,12 +41,14 @@ public class LibrarianCustomAdapter extends RecyclerView.Adapter<LibrarianCustom
     @Override
     public void onBindViewHolder(@NonNull LibrarianCustomAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         BookClasses book = list.get(position);
+        Glide.with(context).load(list.get(position).getImage()).into(holder.recImage);
         holder.title.setText(book.getTitle());
         holder.author.setText(book.getAuthor());
         holder.genre.setText(book.getGenre());
         holder.publishdate.setText(book.getPublishdate());
         holder.numpages.setText(book.getNumpages());
         holder.description.setText(book.getDescription());
+        holder.recImage.setImageURI(Uri.parse(book.getImage()));
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +64,7 @@ public class LibrarianCustomAdapter extends RecyclerView.Adapter<LibrarianCustom
 
                         if(id == R.id.edit_menu) {
                            Intent intent = new Intent(context, UpdateBookActivity.class);
+                            intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
                            intent.putExtra("title", list.get(holder.getAdapterPosition()).getTitle());
                            intent.putExtra("author", list.get(holder.getAdapterPosition()).getAuthor());
                            intent.putExtra("genre", list.get(holder.getAdapterPosition()).getGenre());
@@ -93,6 +101,8 @@ public class LibrarianCustomAdapter extends RecyclerView.Adapter<LibrarianCustom
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        ImageView recImage;
+
         TextView title, author, genre, publishdate, numpages, description;
 
         LinearLayout mainLayout;
@@ -106,6 +116,7 @@ public class LibrarianCustomAdapter extends RecyclerView.Adapter<LibrarianCustom
             publishdate = itemView.findViewById(R.id.book_publish_txt);
             numpages = itemView.findViewById(R.id.book_pages_txt);
             description = itemView.findViewById(R.id.book_description_txt);
+            recImage = itemView.findViewById(R.id.place_holder_display);
             mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }

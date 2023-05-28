@@ -1,12 +1,19 @@
 package com.application.bookmobato.Librarian;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,22 +21,35 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.application.bookmobato.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.net.URI;
+import java.text.DateFormat;
+import java.util.Calendar;
 
 public class AddingBookActivity extends AppCompatActivity {
 
     TextInputEditText inputTitle, inputAuthor, inputGenre, inputPublishdate, inputNumpages, inputDescription;
 
-    DatabaseReference databaseBook;
-
     Button addBookInfo;
+
+    ImageView upload_cover;
+
+    String imgURL;
+    Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +59,32 @@ public class AddingBookActivity extends AppCompatActivity {
         findID();
         insertData();
         datePickerDialogListener();
+
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if(result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            uri = data.getData();
+                            upload_cover.setImageURI(uri);
+                        } else {
+                            Toast.makeText(AddingBookActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+        upload_cover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent photo = new Intent(Intent.ACTION_PICK);
+                photo.setType("image/*");
+                activityResultLauncher.launch(photo);
+            }
+        });
     }
+
     private void findID() {
         inputTitle = findViewById(R.id.inputTitle);
         inputAuthor = findViewById(R.id.inputAuthor);
@@ -48,6 +93,7 @@ public class AddingBookActivity extends AppCompatActivity {
         inputNumpages = findViewById(R.id.inputNumpages);
         inputDescription = findViewById(R.id.inputDescription);
         addBookInfo = findViewById(R.id.addBookBtn);
+        upload_cover = findViewById(R.id.upload_cover);
     }
 
     private void insertData() {
@@ -55,37 +101,76 @@ public class AddingBookActivity extends AppCompatActivity {
         addBookInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String title = inputTitle.getText().toString();
-                String author = inputAuthor.getText().toString();
-                String genre = inputGenre.getText().toString();
-                String publishdate = inputPublishdate.getText().toString();
-                String numpages = inputNumpages.getText().toString();
-                String description = inputDescription.getText().toString();
-
-                if(isInputEmpty(title,author,genre,publishdate,numpages,description)) {
-                    Toast.makeText(AddingBookActivity.this, "Fill the blank, Thank you", Toast.LENGTH_SHORT).show();
-                } else {
-                    databaseBook = FirebaseDatabase.getInstance().getReference();
-                    BookClasses bookClasses = new BookClasses(title,author,genre,publishdate,numpages,description);
-                    databaseBook.child("BookInformation").child(title).setValue(bookClasses)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()) {
-                                        Toast.makeText(AddingBookActivity.this, "Successfully, New Book Added!", Toast.LENGTH_SHORT).show();
-                                        clearTextField();
-                                        Intent intent = new Intent(AddingBookActivity.this,BookListActivity.class);
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(AddingBookActivity.this, "Failed to add book!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                }
+                InsertData();
             }
         });
     }
+
+    private void InsertData() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddingBookActivity.this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("BookInformation")
+                .child(uri.getLastPathSegment());
+
+        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                while (!uriTask.isComplete());
+                Uri urlImage =  uriTask.getResult();
+                imgURL = urlImage.toString();
+                dialog.dismiss();
+                uploadData();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(AddingBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void uploadData() {
+
+        String title = inputTitle.getText().toString();
+        String author = inputAuthor.getText().toString();
+        String genre = inputGenre.getText().toString();
+        String publishdate = inputPublishdate.getText().toString();
+        String numpages = inputNumpages.getText().toString();
+        String description = inputDescription.getText().toString();
+
+        if(isInputEmpty(title,author,genre,publishdate,numpages,description)) {
+            Toast.makeText(this, "Fill the empty field", Toast.LENGTH_SHORT).show();
+        } else {
+            String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+
+            BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description,imgURL);
+
+            FirebaseDatabase.getInstance().getReference("BookInformation").child(currentDate)
+                    .setValue(bookClasses)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(AddingBookActivity.this, "Successfully, New Book Added!", Toast.LENGTH_SHORT).show();
+                                clearTextField();
+                                Intent intent = new Intent(AddingBookActivity.this, BookListActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddingBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
     private void datePickerDialogListener() {
         inputPublishdate.setOnClickListener(new View.OnClickListener() {
             @Override

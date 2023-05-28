@@ -1,15 +1,18 @@
 package com.application.bookmobato.Librarian;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import com.application.bookmobato.R;
 
 public class UpdateBookActivity extends AppCompatActivity {
 
     EditText title_input, author_input,genre_input,publish_input,pages_input,description_input;
     Button update_button,delete_button;
+    ImageView images_update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,10 @@ public class UpdateBookActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
+        String imageUriString = bundle.getString("image");
+
+        Uri imageUri = Uri.parse(imageUriString);
+
         if(bundle != null) {
             title_input.setText(bundle.getString("title"));
             author_input.setText(bundle.getString("author"));
@@ -27,6 +34,7 @@ public class UpdateBookActivity extends AppCompatActivity {
             publish_input.setText(bundle.getString("publishdate"));
             pages_input.setText(bundle.getString("numpages"));
             description_input.setText(bundle.getString("description"));
+            images_update.setImageURI(imageUri);
         }
     }
 
@@ -39,5 +47,6 @@ public class UpdateBookActivity extends AppCompatActivity {
         description_input = findViewById(R.id.inputDescription2);
         update_button = findViewById(R.id.updateBtn);
         delete_button = findViewById(R.id.deleteBtn);
+        images_update = findViewById(R.id.book_cover2);
     }
 }

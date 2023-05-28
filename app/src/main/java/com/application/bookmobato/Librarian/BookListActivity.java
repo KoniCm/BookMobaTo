@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -20,7 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
-public class BookListActivity extends AppCompatActivity {
+public class BookListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+    SwipeRefreshLayout swipeRefreshLayout;
 
     RecyclerView recyclerView;
     ArrayList<BookClasses> list;
@@ -37,6 +41,9 @@ public class BookListActivity extends AppCompatActivity {
 
         findID();
         addBookInformation();
+
+        swipeRefreshLayout.setOnRefreshListener(BookListActivity.this);
+        searchView.clearFocus();
 
         dataBook = FirebaseDatabase.getInstance().getReference("BookInformation");
 
@@ -64,7 +71,7 @@ public class BookListActivity extends AppCompatActivity {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
+            public boolean onQueryTextSubmit(String query)  {
                 return false;
             }
 
@@ -90,6 +97,7 @@ public class BookListActivity extends AppCompatActivity {
         addBook = findViewById(R.id.add_btnBook);
         recyclerView = findViewById(R.id.recyclerView);
         searchView = findViewById(R.id.search);
+        swipeRefreshLayout = findViewById(R.id.refreshActivity);
 
     }
 
@@ -122,5 +130,17 @@ public class BookListActivity extends AppCompatActivity {
             }
         }
         librarianCustomAdapter.searchData(search);
+    }
+
+    @Override
+    public void onRefresh() {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(BookListActivity.this, "Refreshed Successfully!", Toast.LENGTH_SHORT).show();
+                librarianCustomAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }, 3000);
     }
 }
