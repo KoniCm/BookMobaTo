@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Main"
         tools:targetApi="31">
         <activity
+            android:name=".MainLogin.StudentLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Student.RegisterStudentActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainLogin.LibrarianLoginActivity"
             android:exported="false" />
         <activity

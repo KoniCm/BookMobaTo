@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.application.bookmobato.Librarian.BookListActivity;
 import com.application.bookmobato.R;
+import com.application.bookmobato.Student.RegisterStudentActivity;
 
 public class MainLoginActivity extends AppCompatActivity {
 
@@ -29,7 +30,8 @@ public class MainLoginActivity extends AppCompatActivity {
         student_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                Intent studentLogin = new Intent(MainLoginActivity.this, StudentLoginActivity.class);
+                startActivity(studentLogin);
             }
         });
     }
