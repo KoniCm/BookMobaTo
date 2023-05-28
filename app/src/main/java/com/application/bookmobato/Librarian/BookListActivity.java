@@ -58,6 +58,7 @@ public class BookListActivity extends AppCompatActivity implements SwipeRefreshL
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     BookClasses bookClasses = dataSnapshot.getValue(BookClasses.class);
+                    bookClasses.setKey(dataSnapshot.getKey());
                     list.add(bookClasses);
                 }
                 librarianCustomAdapter.notifyDataSetChanged();
@@ -138,6 +139,8 @@ public class BookListActivity extends AppCompatActivity implements SwipeRefreshL
             @Override
             public void run() {
                 Toast.makeText(BookListActivity.this, "Refreshed Successfully!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(BookListActivity.this, BookListActivity.class);
+                startActivity(intent);
                 librarianCustomAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }

@@ -70,6 +70,7 @@ public class LibrarianCustomAdapter extends RecyclerView.Adapter<LibrarianCustom
                            intent.putExtra("publishdate", list.get(holder.getAdapterPosition()).getPublishdate());
                            intent.putExtra("numpages", list.get(holder.getAdapterPosition()).getNumpages());
                            intent.putExtra("description", list.get(holder.getAdapterPosition()).getDescription());
+                           intent.putExtra("Key", list.get(holder.getAdapterPosition()).getKey());
                            context.startActivity(intent);
                         } else if(id == R.id.view_menu) {
                             Intent intent = new Intent(context, BookDetails.class);

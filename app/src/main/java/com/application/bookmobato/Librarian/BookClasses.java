@@ -2,10 +2,18 @@ package com.application.bookmobato.Librarian;
 
 public class BookClasses {
 
-    String title, author, genre, publishdate, numpages, description, image;
+    String title, author, genre, publishdate, numpages, description, image, key;
 
     public BookClasses() {
 
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getImage() {
