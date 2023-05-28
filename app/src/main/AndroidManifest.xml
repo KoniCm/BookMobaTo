@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Main"
         tools:targetApi="31">
         <activity
+            android:name=".MainLogin.LibrarianLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainLogin.MainLoginActivity"
             android:exported="false" />
         <activity

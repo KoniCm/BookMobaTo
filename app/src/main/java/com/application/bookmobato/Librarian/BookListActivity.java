@@ -101,27 +101,7 @@ public class BookListActivity extends AppCompatActivity implements SwipeRefreshL
 
     }
 
-    @Override
-    public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("BookMobaTo");
-        builder.setMessage("Do you want to exit an app");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(BookListActivity.this, "Thank your for using the application", Toast.LENGTH_SHORT).show();
-                finishAffinity();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                builder.setCancelable(true);
-            }
-        });
-        builder.create().show();
-    }
+    
 
     public void searchList(String text) {
         ArrayList<BookClasses> search = new ArrayList<>();
