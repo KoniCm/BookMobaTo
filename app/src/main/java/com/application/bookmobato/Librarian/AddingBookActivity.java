@@ -42,6 +42,8 @@ import java.util.Calendar;
 
 public class AddingBookActivity extends AppCompatActivity {
 
+    String title, author, genre, publishdate, numpages, description;
+
     TextInputEditText inputTitle, inputAuthor, inputGenre, inputPublishdate, inputNumpages, inputDescription;
 
     Button addBookInfo;
@@ -101,7 +103,19 @@ public class AddingBookActivity extends AppCompatActivity {
         addBookInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InsertData();
+
+                title = inputTitle.getText().toString();
+                author = inputAuthor.getText().toString();
+                genre = inputGenre.getText().toString();
+                publishdate = inputPublishdate.getText().toString();
+                numpages = inputNumpages.getText().toString();
+                description = inputDescription.getText().toString();
+
+                if(isInputEmpty(title,author,genre,publishdate,numpages,description)) {
+                    Toast.makeText(AddingBookActivity.this, "Fill the empty field", Toast.LENGTH_SHORT).show();
+                } else {
+                    InsertData();
+                }
             }
         });
     }
@@ -136,39 +150,35 @@ public class AddingBookActivity extends AppCompatActivity {
     }
     private void uploadData() {
 
-        String title = inputTitle.getText().toString();
-        String author = inputAuthor.getText().toString();
-        String genre = inputGenre.getText().toString();
-        String publishdate = inputPublishdate.getText().toString();
-        String numpages = inputNumpages.getText().toString();
-        String description = inputDescription.getText().toString();
+        title = inputTitle.getText().toString();
+        author = inputAuthor.getText().toString();
+        genre = inputGenre.getText().toString();
+        publishdate = inputPublishdate.getText().toString();
+        numpages = inputNumpages.getText().toString();
+        description = inputDescription.getText().toString();
 
-        if(isInputEmpty(title,author,genre,publishdate,numpages,description)) {
-            Toast.makeText(this, "Fill the empty field", Toast.LENGTH_SHORT).show();
-        } else {
-            String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 
-            BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description,imgURL);
+        BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description,imgURL);
 
-            FirebaseDatabase.getInstance().getReference("BookInformation").child(currentDate)
-                    .setValue(bookClasses)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()) {
-                                Toast.makeText(AddingBookActivity.this, "Successfully, New Book Added!", Toast.LENGTH_SHORT).show();
-                                clearTextField();
-                                Intent intent = new Intent(AddingBookActivity.this, BookListActivity.class);
-                                startActivity(intent);
-                            }
+        FirebaseDatabase.getInstance().getReference("BookInformation").child(currentDate)
+                .setValue(bookClasses)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(AddingBookActivity.this, "Successfully, New Book Added!", Toast.LENGTH_SHORT).show();
+                            clearTextField();
+                            Intent intent = new Intent(AddingBookActivity.this, BookListActivity.class);
+                            startActivity(intent);
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AddingBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddingBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void datePickerDialogListener() {
@@ -203,6 +213,7 @@ public class AddingBookActivity extends AppCompatActivity {
         inputPublishdate.getText().clear();
         inputNumpages.getText().clear();
         inputDescription.getText().clear();
+        upload_cover.setImageResource(R.drawable.book_cover);
     }
 
     @Override

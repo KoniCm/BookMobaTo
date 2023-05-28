@@ -62,16 +62,16 @@ public class LibrarianCustomAdapter extends RecyclerView.Adapter<LibrarianCustom
                         int id = item.getItemId();
 
                         if(id == R.id.edit_menu) {
-                           Intent intent = new Intent(context, UpdateBookActivity.class);
-                           intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
-                           intent.putExtra("title", list.get(holder.getAdapterPosition()).getTitle());
-                           intent.putExtra("author", list.get(holder.getAdapterPosition()).getAuthor());
-                           intent.putExtra("genre", list.get(holder.getAdapterPosition()).getGenre());
-                           intent.putExtra("publishdate", list.get(holder.getAdapterPosition()).getPublishdate());
-                           intent.putExtra("numpages", list.get(holder.getAdapterPosition()).getNumpages());
-                           intent.putExtra("description", list.get(holder.getAdapterPosition()).getDescription());
-                           intent.putExtra("Key", list.get(holder.getAdapterPosition()).getKey());
-                           context.startActivity(intent);
+                            Intent intent = new Intent(context, UpdateBookActivity.class);
+                            intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
+                            intent.putExtra("title", list.get(holder.getAdapterPosition()).getTitle());
+                            intent.putExtra("author", list.get(holder.getAdapterPosition()).getAuthor());
+                            intent.putExtra("genre", list.get(holder.getAdapterPosition()).getGenre());
+                            intent.putExtra("publishdate", list.get(holder.getAdapterPosition()).getPublishdate());
+                            intent.putExtra("numpages", list.get(holder.getAdapterPosition()).getNumpages());
+                            intent.putExtra("description", list.get(holder.getAdapterPosition()).getDescription());
+                            intent.putExtra("Key", list.get(holder.getAdapterPosition()).getKey());
+                            context.startActivity(intent);
                         } else if(id == R.id.view_menu) {
                             Intent intent = new Intent(context, BookDetails.class);
                             intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
@@ -81,6 +81,7 @@ public class LibrarianCustomAdapter extends RecyclerView.Adapter<LibrarianCustom
                             intent.putExtra("publishdate", list.get(holder.getAdapterPosition()).getPublishdate());
                             intent.putExtra("numpages", list.get(holder.getAdapterPosition()).getNumpages());
                             intent.putExtra("description", list.get(holder.getAdapterPosition()).getDescription());
+                            intent.putExtra("Key", list.get(holder.getAdapterPosition()).getKey());
                             context.startActivity(intent);
                         }
                         return false;

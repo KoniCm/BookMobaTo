@@ -48,7 +48,8 @@
                         android:id="@+id/inputTitle2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Title"/>
+                        android:hint="Title"
+                        android:inputType="text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,7 +62,8 @@
                         android:id="@+id/inputAuthor2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Author"/>
+                        android:hint="Author"
+                        android:inputType="text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +76,8 @@
                         android:id="@+id/inputGenre2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Genre"/>
+                        android:hint="Genre"
+                        android:inputType="text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,7 +90,9 @@
                         android:id="@+id/inputPublishdate2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Publish Date"/>
+                        android:hint="Publish Date"
+                        android:drawableEnd="@drawable/calendar_ico"
+                        android:inputType="none|date"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,7 +120,8 @@
                         android:layout_height="wrap_content"
                         android:hint="Description"
                         android:lines="5"
-                        android:gravity="top"/>
+                        android:gravity="top"
+                        android:inputType="textMultiLine"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,14 +133,6 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#43A047"
                     android:text="Update"/>
-
-                <Button
-                    android:id="@+id/deleteBtn"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FF1744"
-                    android:text="Delete"/>
 
             </LinearLayout>
 
