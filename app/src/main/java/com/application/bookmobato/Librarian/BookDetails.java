@@ -1,5 +1,6 @@
 package com.application.bookmobato.Librarian;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -31,6 +32,13 @@ public class BookDetails extends AppCompatActivity {
             publish_input.setText(bundle.getString("publishdate"));
             pages_input.setText(bundle.getString("numpages"));
             description_input.setText(bundle.getString("description"));
+        }
+
+        String title = title_input.getText().toString();
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(title);
         }
 
     }

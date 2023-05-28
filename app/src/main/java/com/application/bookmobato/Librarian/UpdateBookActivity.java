@@ -2,7 +2,6 @@ package com.application.bookmobato.Librarian;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,9 +23,6 @@ public class UpdateBookActivity extends AppCompatActivity {
     EditText title_input, author_input,genre_input,publish_input,pages_input,description_input;
     Button update_button,delete_button;
     ImageView images_update;
-
-    String title;
-
     String key = "";
     String imageUrl = "";
 
@@ -37,6 +32,14 @@ public class UpdateBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_book);
 
         findID();
+
+
+        update_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
