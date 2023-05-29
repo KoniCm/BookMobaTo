@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Main"
         tools:targetApi="31">
         <activity
+            android:name=".Dashboard.DashboardStudent"
+            android:exported="false" />
+        <activity
             android:name=".MainLogin.StudentLoginActivity"
             android:exported="false" />
         <activity

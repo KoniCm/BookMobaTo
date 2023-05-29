@@ -39,9 +39,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:cardCornerRadius="250dp"
-                    android:layout_gravity="center"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardCornerRadius="100dp"
+                    android:layout_gravity="center">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="150dp"
@@ -50,10 +49,11 @@
                         android:layout_gravity="center">
 
                         <ImageView
+                            android:src="@drawable/insert_image"
                             android:id="@+id/userImage"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:scaleType="centerCrop"/>
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitCenter"/>
 
                     </androidx.cardview.widget.CardView>
 

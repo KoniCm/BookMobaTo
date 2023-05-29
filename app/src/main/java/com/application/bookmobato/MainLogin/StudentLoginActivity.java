@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.application.bookmobato.Dashboard.DashboardStudent;
 import com.application.bookmobato.R;
 import com.application.bookmobato.Student.RegisterStudentActivity;
 import com.google.android.material.textfield.TextInputEditText;
@@ -63,8 +65,10 @@ public class StudentLoginActivity extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if (snapshot.exists()) {
                                             input_password.setError(null);
-                                            Toast.makeText(StudentLoginActivity.this, "Successfully login", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(StudentLoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
                                             clearField();
+                                            Intent intent = new Intent(StudentLoginActivity.this, DashboardStudent.class);
+                                            startActivity(intent);
                                             /**
                                              * Go to the dashboard for student
                                              * */
