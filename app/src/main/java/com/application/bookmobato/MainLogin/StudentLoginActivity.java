@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.application.bookmobato.Librarian.BookListActivity;
 import com.application.bookmobato.R;
 import com.application.bookmobato.Student.RegisterStudentActivity;
 import com.google.android.material.textfield.TextInputEditText;
@@ -17,14 +16,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.text.DateFormat;
-import java.util.Calendar;
+import java.util.Objects;
 
 public class StudentLoginActivity extends AppCompatActivity {
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://bookmobato-e5e2a-default-rtdb.firebaseio.com/");
-
     Button btn_loginStudent;
     ImageView helper;
     TextInputEditText input_username,input_password;
@@ -53,24 +49,38 @@ public class StudentLoginActivity extends AppCompatActivity {
                 if(id.isEmpty() || pass.isEmpty()) {
                     Toast.makeText(StudentLoginActivity.this, "Please fill the empty field", Toast.LENGTH_SHORT).show();
                 } else {
-                    String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-                    databaseReference.child("Users").addValueEventListener(new ValueEventListener() {
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("UserInformation");
+                    Query checkUserdatabase = databaseReference.orderByChild("id").equalTo(id);
+                    Query checkPassdatabase = databaseReference.orderByChild("pass").equalTo(pass);
+
+                    checkUserdatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.hasChild(id)) {
-
-                                final String getPassword = snapshot.child(id).child("pass").getValue(String.class);
-
-                                if (getPassword.equals(pass)) {
-                                    Toast.makeText(StudentLoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
-                                    clearField();
-                                    Intent intent = new Intent(StudentLoginActivity.this, BookListActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    Toast.makeText(StudentLoginActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();
-                                }
+                            if(snapshot.exists()) {
+                                input_username.setError(null);
+                                checkPassdatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()) {
+                                            input_password.setError(null);
+                                            Toast.makeText(StudentLoginActivity.this, "Successfully login", Toast.LENGTH_SHORT).show();
+                                            clearField();
+                                            /**
+                                             * Go to the dashboard for student
+                                             * */
+                                        } else {
+                                            input_password.setError("Wrong password");
+                                            input_password.requestFocus();
+                                        }
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Toast.makeText(StudentLoginActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             } else {
-                                Toast.makeText(StudentLoginActivity.this, "User not Found!", Toast.LENGTH_SHORT).show();
+                                input_username.setError("User does not exist");
+                                input_username.requestFocus();
                             }
                         }
 

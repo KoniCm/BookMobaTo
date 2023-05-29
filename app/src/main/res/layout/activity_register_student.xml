@@ -9,6 +9,7 @@
     android:background="#8ecae6"
     tools:context=".Student.RegisterStudentActivity">
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,6 +34,30 @@
                     android:text="Register"
                     android:textColor="@color/black"
                     android:textSize="40sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="250dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/white">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="250dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/userImage"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:scaleType="centerCrop"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.cardview.widget.CardView>
 
 
                 <com.google.android.material.textfield.TextInputLayout
