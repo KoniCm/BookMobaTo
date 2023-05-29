@@ -121,10 +121,23 @@ public class RegisterStudentActivity extends AppCompatActivity {
                 final String pass = pass_input.getText().toString();
                 final String confirmPass = input_Confirmpassword.getText().toString();
 
-                if (isInputEmpty(id,name,section,strand,gradeLevel,pass,confirmPass)) {
-                    Toast.makeText(RegisterStudentActivity.this, "Fill the empty field", Toast.LENGTH_SHORT).show();
-                } else if (!pass.equals(confirmPass)) {
-                    Toast.makeText(RegisterStudentActivity.this, "Password does not matched", Toast.LENGTH_SHORT).show();
+                //if the field empty keyword(isEmpty)
+                if(isInputEmpty(id,name,gradeLevel,section,strand,pass)) {
+                    Toast.makeText(RegisterStudentActivity.this, "Please fill the empty field!", Toast.LENGTH_SHORT).show();
+                } else if(id.length() != 11) {
+                    Toast.makeText(RegisterStudentActivity.this, "Enter a valid Student ID", Toast.LENGTH_SHORT).show();
+                } else if (!gradeLevel.equals("11") && !gradeLevel.equals("12")) {
+                    Toast.makeText(RegisterStudentActivity.this, "Enter a valid grade level", Toast.LENGTH_SHORT).show();
+                } else if(!listStrand.contains(strand.toLowerCase())) {
+                    Toast.makeText(RegisterStudentActivity.this, "Enter a valid strand", Toast.LENGTH_SHORT).show();
+                } else if(!listSection.contains(section.toLowerCase())){
+                    Toast.makeText(RegisterStudentActivity.this, "Enter a valid section", Toast.LENGTH_SHORT).show();
+                } else if(!listGradelevel.contains(gradeLevel.toLowerCase())){
+                    Toast.makeText(RegisterStudentActivity.this, "Enter a valid grade level", Toast.LENGTH_SHORT).show();
+                }else if(pass.length() < 8) {
+                    Toast.makeText(RegisterStudentActivity.this,"Password must be longer than 8 characters!",Toast.LENGTH_SHORT).show();
+                } else if(!pass.equals(confirmPass)){
+                    Toast.makeText(RegisterStudentActivity.this,"Password does not matched!",Toast.LENGTH_SHORT).show();
                 } else {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterStudentActivity.this);
