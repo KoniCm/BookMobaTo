@@ -1,10 +1,18 @@
 package com.application.bookmobato.Student;
 
 public class StudentClasses {
-    String id, name, section, strand, gradelevel, pass, image;
+    String id, name, section, strand, gradelevel, pass, image, key;
 
     public StudentClasses() {
 
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public StudentClasses(String id, String name, String section, String strand, String gradelevel, String pass, String image) {

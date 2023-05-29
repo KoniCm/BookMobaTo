@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.application.bookmobato.Dashboard.DashboardLibrarian;
 import com.application.bookmobato.Librarian.BookListActivity;
 import com.application.bookmobato.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -39,7 +40,7 @@ public class LibrarianLoginActivity extends AppCompatActivity {
                     Toast.makeText(LibrarianLoginActivity.this, "Wrong username and password!", Toast.LENGTH_SHORT).show();
                 } else{
                     Toast.makeText(LibrarianLoginActivity.this, "Successfully login as a librarian", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LibrarianLoginActivity.this, BookListActivity.class);
+                    Intent intent = new Intent(LibrarianLoginActivity.this, DashboardLibrarian.class);
                     startActivity(intent);
                 }
             }

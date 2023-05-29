@@ -66,9 +66,9 @@ public class StudentLoginActivity extends AppCompatActivity {
                                         if (snapshot.exists()) {
                                             input_password.setError(null);
                                             Toast.makeText(StudentLoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
-                                            clearField();
                                             Intent intent = new Intent(StudentLoginActivity.this, DashboardStudent.class);
                                             startActivity(intent);
+                                            clearField();
                                             /**
                                              * Go to the dashboard for student
                                              * */

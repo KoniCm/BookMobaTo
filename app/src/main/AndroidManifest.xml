@@ -15,6 +15,17 @@
         android:theme="@style/Theme.Main"
         tools:targetApi="31">
         <activity
+            android:name=".Dashboard.DashboardLibrarian"
+            android:exported="false" />
+        <activity
+            android:name=".Librarian.StudentActivityList"
+            android:exported="false"
+            android:label="Student List"
+            android:parentActivityName=".Librarian.UpdateBookActivity"/>
+        <activity
+            android:name=".Student.UpdateStudentActivity"
+            android:exported="false" />
+        <activity
             android:name=".Dashboard.DashboardStudent"
             android:exported="false" />
         <activity
