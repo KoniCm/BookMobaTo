@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.578"
-        app:srcCompat="@drawable/book_logo" />
+        android:src="@drawable/book_logo" />
 
     <TextView
         android:layout_width="wrap_content"

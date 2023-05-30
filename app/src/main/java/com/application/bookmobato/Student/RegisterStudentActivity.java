@@ -20,9 +20,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.application.bookmobato.Librarian.AddingBookActivity;
-import com.application.bookmobato.Librarian.BookClasses;
-import com.application.bookmobato.Librarian.BookListActivity;
 import com.application.bookmobato.MainLogin.StudentLoginActivity;
 import com.application.bookmobato.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,11 +27,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -243,7 +236,11 @@ public class RegisterStudentActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(RegisterStudentActivity.this, "Successfully, New Student Added!", Toast.LENGTH_SHORT).show();
+                            final Toast toast = new Toast(getApplicationContext());
+                            toast.setDuration(Toast.LENGTH_LONG);
+                            View custom = getLayoutInflater().inflate(R.layout.toast_message_student, null);
+                            toast.setView(custom);
+                            toast.show();
                             clearTextField();
                             Intent intent = new Intent(RegisterStudentActivity.this, StudentLoginActivity.class);
                             startActivity(intent);

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -107,7 +108,11 @@ public class BookDetails extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         databaseReference.child(key).removeValue();
-                        Toast.makeText(BookDetails.this, "Successfully, Book Deleted!", Toast.LENGTH_SHORT).show();
+                        final Toast toast = new Toast(getApplicationContext());
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        View custom = getLayoutInflater().inflate(R.layout.toast_message_delete_book, null);
+                        toast.setView(custom);
+                        toast.show();
                         Intent intent = new Intent(BookDetails.this, BookListActivity.class);
                         startActivity(intent);
                     }
