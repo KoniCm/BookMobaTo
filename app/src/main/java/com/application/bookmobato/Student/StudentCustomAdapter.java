@@ -59,6 +59,23 @@ public class StudentCustomAdapter extends RecyclerView.Adapter<StudentCustomAdap
                 context.startActivity(intent);
             }
         });
+
+        holder.studentLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(context, UpdateStudentActivity.class);
+                intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
+                intent.putExtra("id", list.get(holder.getAdapterPosition()).getId());
+                intent.putExtra("name", list.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("level", list.get(holder.getAdapterPosition()).getGradelevel());
+                intent.putExtra("section", list.get(holder.getAdapterPosition()).getSection());
+                intent.putExtra("strand", list.get(holder.getAdapterPosition()).getStrand());
+                intent.putExtra("pass", list.get(holder.getAdapterPosition()).getPass());
+                intent.putExtra("Key", list.get(holder.getAdapterPosition()).getKey());
+                context.startActivity(intent);
+                return false;
+            }
+        });
     }
     public void searchData(ArrayList<StudentClasses> searchlist) {
         list = searchlist;

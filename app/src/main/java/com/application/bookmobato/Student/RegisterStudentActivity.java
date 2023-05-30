@@ -155,7 +155,10 @@ public class RegisterStudentActivity extends AppCompatActivity {
 
                 if(isInputEmpty(id,name,section,strand,gradeLevel,pass)) {
                     Toast.makeText(RegisterStudentActivity.this, "Fill the empty field", Toast.LENGTH_SHORT).show();
-                } else if(id.length() != 11) {
+                } else if (name.length() < 10){
+                    name_input.setError("Ex: Dela Cruz, Juan");
+                    name_input.requestFocus();
+                }else if(id.length() != 11) {
                     Toast.makeText(RegisterStudentActivity.this, "Enter a valid Student ID", Toast.LENGTH_SHORT).show();
                 } else if (!gradeLevel.equals("11") && !gradeLevel.equals("12")) {
                     Toast.makeText(RegisterStudentActivity.this, "Enter a valid grade level", Toast.LENGTH_SHORT).show();

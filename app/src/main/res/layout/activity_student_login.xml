@@ -75,13 +75,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Create an account"
-                android:textSize="14sp"/>
-
             <Button
                 android:layout_marginTop="15dp"
                 android:backgroundTint="#00B0FF"
@@ -89,6 +82,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Login"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don't have an account?"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:layout_marginStart="182dp"
+                    android:id="@+id/register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign up"
+                    android:textStyle="normal|bold"
+                    android:textColor="#029DE8"
+                    android:textSize="18sp"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 
