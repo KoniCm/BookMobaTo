@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.application.bookmobato.Librarian.BookClasses;
 import com.application.bookmobato.Librarian.StudentAccountInformation;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
@@ -58,6 +59,10 @@ public class StudentCustomAdapter extends RecyclerView.Adapter<StudentCustomAdap
                 context.startActivity(intent);
             }
         });
+    }
+    public void searchData(ArrayList<StudentClasses> searchlist) {
+        list = searchlist;
+        notifyDataSetChanged();
     }
 
     @Override

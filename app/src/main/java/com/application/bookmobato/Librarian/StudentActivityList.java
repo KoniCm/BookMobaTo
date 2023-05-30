@@ -2,6 +2,7 @@ package com.application.bookmobato.Librarian;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -31,6 +32,8 @@ public class StudentActivityList extends AppCompatActivity implements SwipeRefre
 
     DatabaseReference databaseReference;
 
+    SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class StudentActivityList extends AppCompatActivity implements SwipeRefre
         findID();
 
         swipeRefreshLayout.setOnRefreshListener(StudentActivityList.this);
+        searchView.clearFocus();
         databaseReference = FirebaseDatabase.getInstance().getReference("UserInformation");
 
         list = new ArrayList<>();
@@ -63,12 +67,33 @@ public class StudentActivityList extends AppCompatActivity implements SwipeRefre
                 Log.e("FirebaseError", "Error");
             }
         });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query)  {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchList(newText);
+                return false;
+            }
+        });
+    }
+    public void searchList(String text) {
+        ArrayList<StudentClasses> search = new ArrayList<>();
+        for (StudentClasses studentClasses : list) {
+            if(studentClasses.getName().toLowerCase().contains(text.toLowerCase())) {
+                search.add(studentClasses);
+            }
+        }
+        studentCustomAdapter.searchData(search);
     }
 
     private void findID() {
         recyclerView = findViewById(R.id.recyclerView);
         swipeRefreshLayout = findViewById(R.id.refreshActivity);
+        searchView = findViewById(R.id.search);
     }
     @Override
     public void onRefresh() {
