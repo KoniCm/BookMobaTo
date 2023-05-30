@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Main"
         tools:targetApi="31">
         <activity
+            android:name=".Librarian.StudentAccountInformation"
+            android:exported="false" />
+        <activity
             android:name=".Student.StudentBookDetails"
             android:exported="false" />
         <activity

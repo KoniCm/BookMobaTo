@@ -1,6 +1,7 @@
 package com.application.bookmobato.Student;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.application.bookmobato.Librarian.StudentAccountInformation;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import java.util.ArrayList;
@@ -40,6 +43,21 @@ public class StudentCustomAdapter extends RecyclerView.Adapter<StudentCustomAdap
         holder.section.setText(list.get(position).getStrand());
         holder.strand.setText(list.get(position).getGradelevel());
         holder.pass.setText(list.get(position).getPass());
+
+        holder.studentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, StudentAccountInformation.class);
+                intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
+                intent.putExtra("id", list.get(holder.getAdapterPosition()).getId());
+                intent.putExtra("name", list.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("level", list.get(holder.getAdapterPosition()).getGradelevel());
+                intent.putExtra("section", list.get(holder.getAdapterPosition()).getSection());
+                intent.putExtra("strand", list.get(holder.getAdapterPosition()).getStrand());
+                intent.putExtra("pass", list.get(holder.getAdapterPosition()).getPass());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
