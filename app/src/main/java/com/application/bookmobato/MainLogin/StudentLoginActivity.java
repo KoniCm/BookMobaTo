@@ -35,6 +35,16 @@ public class StudentLoginActivity extends AppCompatActivity {
 
         findID();
 
+        helper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(StudentLoginActivity.this, "Automated login", Toast.LENGTH_SHORT).show();
+
+                input_username.setText("02000287369");
+                input_password.setText("sample123");
+            }
+        });
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
