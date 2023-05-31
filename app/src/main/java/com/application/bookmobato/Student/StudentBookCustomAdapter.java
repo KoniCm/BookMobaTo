@@ -14,8 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.application.bookmobato.Librarian.BookClasses;
-import com.application.bookmobato.Librarian.BookDetails;
-import com.application.bookmobato.Librarian.UpdateBookActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import java.util.ArrayList;
@@ -46,8 +44,7 @@ public class StudentBookCustomAdapter extends RecyclerView.Adapter<StudentBookCu
         holder.genre.setText(book.getGenre());
         holder.publishdate.setText(book.getPublishdate());
         holder.numpages.setText(book.getNumpages());
-        holder.description.setText(book.getDescription());
-
+        holder.description.setText(book.getDescription());;
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,23 +59,26 @@ public class StudentBookCustomAdapter extends RecyclerView.Adapter<StudentBookCu
 
 
                          if(id == R.id.view_menu) {
-                            Intent intent = new Intent(context, StudentBookDetails.class);
-                            intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
-                            intent.putExtra("title", list.get(holder.getAdapterPosition()).getTitle());
-                            intent.putExtra("author", list.get(holder.getAdapterPosition()).getAuthor());
-                            intent.putExtra("genre", list.get(holder.getAdapterPosition()).getGenre());
-                            intent.putExtra("publishdate", list.get(holder.getAdapterPosition()).getPublishdate());
-                            intent.putExtra("numpages", list.get(holder.getAdapterPosition()).getNumpages());
-                            intent.putExtra("description", list.get(holder.getAdapterPosition()).getDescription());
-                            context.startActivity(intent);
-                        }
+                             Intent intent = new Intent(context, StudentBookDetails.class);
+                             intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
+                             intent.putExtra("title", list.get(holder.getAdapterPosition()).getTitle());
+                             intent.putExtra("author", list.get(holder.getAdapterPosition()).getAuthor());
+                             intent.putExtra("genre", list.get(holder.getAdapterPosition()).getGenre());
+                             intent.putExtra("publishdate", list.get(holder.getAdapterPosition()).getPublishdate());
+                             intent.putExtra("numpages", list.get(holder.getAdapterPosition()).getNumpages());
+                             intent.putExtra("description", list.get(holder.getAdapterPosition()).getDescription());
+                             context.startActivity(intent);
+                         } else if(id == R.id.borrowed_men) {
+                             Intent intent = new Intent(context, BorrowBookActivity.class);
+                             intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
+                             intent.putExtra("title", list.get(holder.getAdapterPosition()).getTitle());
+                             context.startActivity(intent);
+                         }
                         return false;
                     }
                 });
             }
         });
-
-
     }
 
     @Override
@@ -95,7 +95,7 @@ public class StudentBookCustomAdapter extends RecyclerView.Adapter<StudentBookCu
 
         ImageView bookImage;
 
-        TextView title, author, genre, publishdate, numpages, description;
+        TextView title, author, genre, publishdate, numpages, description, nameStudent;
 
         LinearLayout mainLayout;
 
@@ -108,6 +108,7 @@ public class StudentBookCustomAdapter extends RecyclerView.Adapter<StudentBookCu
             publishdate = itemView.findViewById(R.id.book_publish_txt);
             numpages = itemView.findViewById(R.id.book_pages_txt);
             description = itemView.findViewById(R.id.book_description_txt);
+            nameStudent = itemView.findViewById(R.id.student_name_txt);
             bookImage = itemView.findViewById(R.id.place_holder_display);
             mainLayout = itemView.findViewById(R.id.mainLayout);
         }

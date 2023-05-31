@@ -45,9 +45,9 @@ public class StudentCustomAdapter extends RecyclerView.Adapter<StudentCustomAdap
         holder.strand.setText(list.get(position).getGradelevel());
         holder.pass.setText(list.get(position).getPass());
 
-        holder.studentLayout.setOnClickListener(new View.OnClickListener() {
+        holder.studentLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
                 Intent intent = new Intent(context, StudentAccountInformation.class);
                 intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
                 intent.putExtra("id", list.get(holder.getAdapterPosition()).getId());
@@ -57,12 +57,13 @@ public class StudentCustomAdapter extends RecyclerView.Adapter<StudentCustomAdap
                 intent.putExtra("strand", list.get(holder.getAdapterPosition()).getStrand());
                 intent.putExtra("pass", list.get(holder.getAdapterPosition()).getPass());
                 context.startActivity(intent);
+                return true;
             }
         });
 
-        holder.studentLayout.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.studentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 Intent intent = new Intent(context, UpdateStudentActivity.class);
                 intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
                 intent.putExtra("id", list.get(holder.getAdapterPosition()).getId());
@@ -73,7 +74,6 @@ public class StudentCustomAdapter extends RecyclerView.Adapter<StudentCustomAdap
                 intent.putExtra("pass", list.get(holder.getAdapterPosition()).getPass());
                 intent.putExtra("Key", list.get(holder.getAdapterPosition()).getKey());
                 context.startActivity(intent);
-                return false;
             }
         });
     }
