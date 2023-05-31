@@ -54,8 +54,7 @@
             android:exported="false" />
         <activity
             android:name=".Librarian.BookDetails"
-            android:exported="false"
-            android:parentActivityName=".Librarian.BookListActivity" />
+            android:exported="false" />
         <activity
             android:name=".Librarian.UpdateBookActivity"
             android:exported="false"
