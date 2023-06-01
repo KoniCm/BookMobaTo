@@ -8,23 +8,23 @@
 
     <androidx.cardview.widget.CardView
         android:layout_marginTop="50dp"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         app:cardCornerRadius="100dp"
         android:layout_centerHorizontal="true">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             app:cardCornerRadius="250dp"
-            android:layout_gravity="center"
-            app:cardBackgroundColor="@color/black">
+            android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="fitCenter"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/prof_koni"/>
 
         </androidx.cardview.widget.CardView>
 

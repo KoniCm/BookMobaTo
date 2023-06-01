@@ -38,10 +38,13 @@ public class StudentLoginActivity extends AppCompatActivity {
         helper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(StudentLoginActivity.this, "Automated login", Toast.LENGTH_SHORT).show();
-
+                final Toast toast = new Toast(getApplicationContext());
+                toast.setDuration(Toast.LENGTH_LONG);
+                View backDoor = getLayoutInflater().inflate(R.layout.toast_message_backdoor, null);
+                toast.setView(backDoor);
+                toast.show();
                 input_username.setText("02000287369");
-                input_password.setText("sample123");
+                input_password.setText("senpiakoni04");
             }
         });
 
