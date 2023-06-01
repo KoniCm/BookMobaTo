@@ -204,25 +204,30 @@ public class RegisterStudentActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("UserInformationImage")
-                .child(uri.getLastPathSegment());
+        try {
 
-        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isComplete());
-                Uri urlImage =  uriTask.getResult();
-                imgURL = urlImage.toString();
-                dialog.dismiss();
-                uploadData();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegisterStudentActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("UserInformationImage")
+                    .child(uri.getLastPathSegment());
+            storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isComplete());
+                    Uri urlImage =  uriTask.getResult();
+                    imgURL = urlImage.toString();
+                    dialog.dismiss();
+                    uploadData();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(RegisterStudentActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(this, "Please select a profile picture", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        }
     }
 
     private void uploadData() {

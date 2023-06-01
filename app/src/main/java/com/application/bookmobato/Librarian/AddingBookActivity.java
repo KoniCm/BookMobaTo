@@ -91,6 +91,8 @@ public class AddingBookActivity extends AppCompatActivity {
 
                 if(isInputEmpty(title,author,genre,publishdate,numpages,description)) {
                     Toast.makeText(AddingBookActivity.this, "Fill the empty field", Toast.LENGTH_SHORT).show();
+                } else if(upload_cover == null) {
+                    Toast.makeText(AddingBookActivity.this, "Please select a image", Toast.LENGTH_SHORT).show();
                 } else {
                     InsertData();
                 }
@@ -106,25 +108,30 @@ public class AddingBookActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("BookInformation")
-                .child(uri.getLastPathSegment());
+        try {
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("BookInformation")
+                    .child(uri.getLastPathSegment());
 
-        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isComplete());
-                Uri urlImage =  uriTask.getResult();
-                imgURL = urlImage.toString();
-                dialog.dismiss();
-                uploadData();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AddingBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isComplete());
+                    Uri urlImage =  uriTask.getResult();
+                    imgURL = urlImage.toString();
+                    dialog.dismiss();
+                    uploadData();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(AddingBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(this, "Please select a book cover", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        }
     }
     private void uploadData() {
 
