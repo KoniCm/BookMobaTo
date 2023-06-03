@@ -59,7 +59,7 @@
         android:layout_marginBottom="18dp"
         android:clickable="true"
         app:tint="@color/white"
-        android:backgroundTint="#15616d"
+        android:backgroundTint="#005bab"
         app:srcCompat="@drawable/baseline_add_ico" />
 
 </RelativeLayout>

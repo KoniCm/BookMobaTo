@@ -19,12 +19,12 @@
     </style>
 
     <style name="DashboardPrime" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#15616d</item>
+        <item name="colorPrimary">#005bab</item>
     </style>
 
     <style name="loginStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/teal_200</item>
-        <item name="backgroundColor">#00E5FF</item>
+        <item name="backgroundColor">#005bab</item>
     </style>
 
     <style name="splash_screen" parent="DashboardPrime">

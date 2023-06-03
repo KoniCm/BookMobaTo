@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/book_student_bg"
+    android:background="@color/white"
     tools:context=".Dashboard.DashboardStudent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#005bab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +45,8 @@
 
                 <androidx.cardview.widget.CardView
                     app:cardCornerRadius="5dp"
-                    app:cardBackgroundColor="#65000000"
+                    app:cardElevation="15dp"
+                    app:cardBackgroundColor="@color/white"
                     android:id="@+id/bookListforStudent"
                     android:layout_width="220dp"
                     android:layout_height="220dp"
@@ -62,7 +74,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Books"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +90,8 @@
 
                 <androidx.cardview.widget.CardView
                     app:cardCornerRadius="5dp"
-                    app:cardBackgroundColor="#65000000"
+                    app:cardElevation="15dp"
+                    app:cardBackgroundColor="@color/white"
                     android:id="@+id/borrowreturn"
                     android:layout_width="220dp"
                     android:layout_height="220dp"
@@ -104,7 +117,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Borrow/Return"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

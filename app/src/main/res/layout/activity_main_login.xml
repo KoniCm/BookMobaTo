@@ -4,13 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/book_login_bg"
+    android:background="@color/white"
     tools:context=".MainLogin.MainLoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:orientation="vertical"
+        android:background="#005bab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +39,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:layout_marginBottom="20dp"
                 android:layout_width="260dp"
                 android:layout_height="260dp"
                 android:layout_gravity="center"
@@ -34,11 +47,12 @@
 
                 <androidx.cardview.widget.CardView
                     app:cardCornerRadius="5dp"
-                    app:cardBackgroundColor="#65000000"
+                    app:cardBackgroundColor="@color/white"
                     android:id="@+id/librarian_btn"
                     android:layout_width="220dp"
                     android:layout_height="220dp"
-                    android:layout_margin="20dp">
+                    android:layout_margin="20dp"
+                    app:cardElevation="15dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -62,7 +76,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Librarian"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -72,17 +86,19 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginBottom="20dp"
                 android:layout_width="260dp"
                 android:layout_height="260dp"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     app:cardCornerRadius="5dp"
-                    app:cardBackgroundColor="#65000000"
+                    app:cardBackgroundColor="@color/white"
                     android:id="@+id/student_btn"
                     android:layout_width="220dp"
                     android:layout_height="220dp"
-                    android:layout_margin="20dp">
+                    android:layout_margin="20dp"
+                    app:cardElevation="15dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -104,7 +120,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Student"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
