@@ -44,7 +44,7 @@ public class StudentBookCustomAdapter extends RecyclerView.Adapter<StudentBookCu
         holder.genre.setText(book.getGenre());
         holder.publishdate.setText(book.getPublishdate());
         holder.numpages.setText(book.getNumpages());
-        holder.description.setText(book.getDescription());;
+        holder.description.setText(book.getDescription());
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

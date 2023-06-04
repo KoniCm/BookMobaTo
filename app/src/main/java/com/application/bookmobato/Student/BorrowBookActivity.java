@@ -1,17 +1,25 @@
 package com.application.bookmobato.Student;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.application.bookmobato.Librarian.BookClasses;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class BorrowBookActivity extends AppCompatActivity {
 
@@ -25,6 +33,8 @@ public class BorrowBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borrow_book);
 
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("UserInformation");
+
         findID();
 
         Bundle bundle = getIntent().getExtras();
@@ -32,7 +42,6 @@ public class BorrowBookActivity extends AppCompatActivity {
         if(bundle != null) {
             Glide.with(this).load(bundle.getString("image")).into(bookImage);
             title.setText(bundle.getString("title"));
-            name.setText(bundle.getString("name"));
         }
 
         addRequestBook.setOnClickListener(new View.OnClickListener() {
