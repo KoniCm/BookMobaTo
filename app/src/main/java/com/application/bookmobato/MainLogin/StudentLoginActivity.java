@@ -2,7 +2,10 @@ package com.application.bookmobato.MainLogin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,6 +80,11 @@ public class StudentLoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if (snapshot.exists()) {
+                                            SharedPreferences sharedPreferences = getSharedPreferences("MyCache", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putString("keyID", id);
+                                            editor.apply();
+
                                             input_password.setError(null);
                                             Toast.makeText(StudentLoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(StudentLoginActivity.this, DashboardStudent.class);

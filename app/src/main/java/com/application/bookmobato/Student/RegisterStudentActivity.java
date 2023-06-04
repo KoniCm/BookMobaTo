@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -59,6 +60,7 @@ public class RegisterStudentActivity extends AppCompatActivity {
     ImageView userImage;
     String imgURL;
     Uri uri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -238,8 +240,12 @@ public class RegisterStudentActivity extends AppCompatActivity {
 
         StudentClasses studentClasses = new StudentClasses(id, name, section, strand, gradeLevel, pass, imgURL);
 
-        FirebaseDatabase.getInstance().getReference("UserInformation").child(currentDate)
-                .setValue(studentClasses)
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("UserInformation");
+
+        DatabaseReference childRef = ref.push();
+
+        childRef.setValue(studentClasses)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".SplashMain.MainActivity">
 
     <ImageView
@@ -17,8 +18,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578"
-        android:src="@drawable/book_logo" />
+        app:layout_constraintVertical_bias="0.589"
+        app:srcCompat="@drawable/book_logo" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
+        android:fontFamily="@font/lucon"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

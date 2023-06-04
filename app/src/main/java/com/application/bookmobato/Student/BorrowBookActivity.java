@@ -3,8 +3,13 @@ package com.application.bookmobato.Student;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,19 +26,51 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class BorrowBookActivity extends AppCompatActivity {
 
     TextView title;
     ImageView bookImage;
-    TextInputEditText name,comment;
+    TextInputEditText comment;
+
+    AutoCompleteTextView name;
     Button addRequestBook;
+
+    DatabaseReference databaseReference;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borrow_book);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("UserInformation");
+        databaseReference = FirebaseDatabase.getInstance().getReference("UserInformation");
+
+        sharedPreferences = getSharedPreferences("MyCache", Context.MODE_PRIVATE);
+        String value = sharedPreferences.getString("keyID", "default_value");
+        Query query = databaseReference.orderByChild("id").equalTo(value);
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                        name.setText((ds.child("name").getValue().toString()));
+                    }
+                } else {
+                    Log.d("TAG", "Data does not exist");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("TAG", "Error: " + databaseError.getMessage());
+            }
+        });
 
         findID();
 
