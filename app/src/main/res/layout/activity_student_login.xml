@@ -91,10 +91,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Don't have an account?"
-                    android:textSize="17sp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/black"/>
 
                 <TextView
-                    android:layout_marginStart="182dp"
+                    android:layout_marginStart="165dp"
                     android:id="@+id/register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
