@@ -1,11 +1,16 @@
 package com.application.bookmobato.Librarian;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.application.bookmobato.R;
@@ -36,6 +41,13 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
         BorrowStudentClasses studentBookReq = list.get(position);
         holder.title.setText(studentBookReq.getTitle());
         holder.name.setText(studentBookReq.getName());
+
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogConfirmation();
+            }
+        });
     }
 
     @Override
@@ -53,12 +65,37 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
         TextView title, name;
         ImageView bookImage;
 
+        LinearLayout mainLayout;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.studentReq_title);
             name = itemView.findViewById(R.id.studentReq_name);
             bookImage = itemView.findViewById(R.id.studentReq_image);
+            mainLayout = itemView.findViewById(R.id.studentBookReqLayout);
         }
+    }
+
+    public void dialogConfirmation() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setMessage("Do you want to lend a book?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(context, "You accept a request from student...", Toast.LENGTH_SHORT).show();
+                builder.setCancelable(true);
+            }
+        });
+        builder.setNegativeButton("Decline", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                builder.setCancelable(true);
+            }
+        });
+
+        builder.create().show();
     }
 }
