@@ -63,7 +63,6 @@ public class BorrowBookActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
 
     String imgURL;
-    Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,38 +98,18 @@ public class BorrowBookActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
+            // this is for displaying the image to ImageView
             Glide.with(this).load(bundle.getString("image")).into(bookImage);
             title.setText(bundle.getString("title"));
+
+            // set the imgUrl (String)
+            imgURL = bundle.getString("image");
         }
 
         addRequestBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InsertData();
-            }
-        });
-
-        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if(result.getResultCode() == Activity.RESULT_OK) {
-                            Intent data = result.getData();
-                            uri = data.getData();
-                        } else {
-                            Toast.makeText(BorrowBookActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-        );
-
-        bookImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent photo = new Intent(Intent.ACTION_PICK);
-                photo.setType("image/*");
-                activityResultLauncher.launch(photo);
+                uploadData();
             }
         });
     }
@@ -140,41 +119,6 @@ public class BorrowBookActivity extends AppCompatActivity {
         bookImage = findViewById(R.id.book_cover_details);
         name = findViewById(R.id.input_name);
         addRequestBook = findViewById(R.id.addRequestBook);
-
-    }
-
-    private void InsertData() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(BorrowBookActivity.this);
-        builder.setCancelable(false);
-        builder.setView(R.layout.progress_layout);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        try {
-            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("BookInformationReq")
-                    .child(uri.getLastPathSegment());
-
-            storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                    while (!uriTask.isComplete()) ;
-                    Uri urlImage = uriTask.getResult();
-                    imgURL = urlImage.toString();
-                    dialog.dismiss();
-                    uploadData();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(BorrowBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        } catch (Exception e) {
-            Toast.makeText(BorrowBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
-        }
     }
 
     private void uploadData() {
