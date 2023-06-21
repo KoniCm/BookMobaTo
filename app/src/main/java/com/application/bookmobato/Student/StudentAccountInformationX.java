@@ -17,8 +17,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
-public class StudentAccountInformation extends AppCompatActivity {
+public class StudentAccountInformationX extends AppCompatActivity {
 
     ImageView studentImage;
     TextView id, name, level, section, strand, pass;
@@ -50,6 +51,10 @@ public class StudentAccountInformation extends AppCompatActivity {
                         section.setText((ds.child("section").getValue().toString()));
                         strand.setText((ds.child("strand").getValue().toString()));
                         pass.setText((ds.child("pass")).getValue().toString());
+                        String imageUrl = ds.child("image").getValue(String.class);
+                        if (imageUrl != null) {
+                            Picasso.get().load(imageUrl).into(studentImage);
+                        }
                     }
                 } else {
                     Log.d("TAG", "Data does not exist");

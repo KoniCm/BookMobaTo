@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
-import com.application.bookmobato.Student.StudentAccountInformation;
+import com.application.bookmobato.Student.StudentAccountInformationX;
 import com.application.bookmobato.Student.StudentBookListActivity;
 
 public class DashboardStudent extends AppCompatActivity {
@@ -48,7 +48,7 @@ public class DashboardStudent extends AppCompatActivity {
         btn_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardStudent.this, StudentAccountInformation.class);
+                Intent intent = new Intent(DashboardStudent.this, StudentAccountInformationX.class);
                 startActivity(intent);
             }
         });
