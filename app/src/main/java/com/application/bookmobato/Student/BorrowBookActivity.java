@@ -130,8 +130,12 @@ public class BorrowBookActivity extends AppCompatActivity {
 
         BorrowStudentClasses bookClasses = new BorrowStudentClasses(titleX, nameX, imgURL);
 
-        FirebaseDatabase.getInstance().getReference("BookInformationReq").child(currentDate)
-                .setValue(bookClasses)
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("BookInformationReq");
+
+        DatabaseReference childRef = ref.push();
+
+        childRef.setValue(bookClasses)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
