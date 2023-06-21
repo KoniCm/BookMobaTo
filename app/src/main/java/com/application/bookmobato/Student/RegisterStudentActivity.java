@@ -236,8 +236,6 @@ public class RegisterStudentActivity extends AppCompatActivity {
 
         declaration();
 
-        String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-
         StudentClasses studentClasses = new StudentClasses(id, name, section, strand, gradeLevel, pass, imgURL);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

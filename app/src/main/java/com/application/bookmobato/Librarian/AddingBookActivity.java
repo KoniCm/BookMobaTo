@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -137,12 +138,14 @@ public class AddingBookActivity extends AppCompatActivity {
 
         declarationOfInfo();
 
-        String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-
         BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description,imgURL);
 
-        FirebaseDatabase.getInstance().getReference("BookInformation").child(currentDate)
-                .setValue(bookClasses)
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("BookInformation");
+
+        DatabaseReference childRef = ref.push();
+
+        childRef.setValue(bookClasses)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
