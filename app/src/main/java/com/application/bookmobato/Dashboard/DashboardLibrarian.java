@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.application.bookmobato.Librarian.BookListActivity;
 import com.application.bookmobato.Librarian.StudentActivityList;
+import com.application.bookmobato.Librarian.StudentBookReq;
 import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 
@@ -48,7 +49,8 @@ public class DashboardLibrarian extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(DashboardLibrarian.this, "Processing", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DashboardLibrarian.this,StudentBookReq.class);
+                startActivity(intent);
             }
         });
     }
