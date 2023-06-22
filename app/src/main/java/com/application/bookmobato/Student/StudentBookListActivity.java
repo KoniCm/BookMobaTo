@@ -1,6 +1,7 @@
 package com.application.bookmobato.Student;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,14 +9,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.application.bookmobato.Librarian.AddingBookActivity;
 import com.application.bookmobato.Librarian.BookClasses;
 import com.application.bookmobato.Librarian.BookListActivity;
 import com.application.bookmobato.Librarian.LibrarianCustomAdapter;
@@ -116,5 +122,25 @@ public class StudentBookListActivity extends AppCompatActivity implements SwipeR
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, 3000);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.student_info, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.student_information) {
+            Intent accountInfo = new Intent(StudentBookListActivity.this, StudentAccountInformationX.class);
+            startActivity(accountInfo);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,167 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".Student.StudentAccountInformationX">
 
-   <androidx.cardview.widget.CardView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-       <androidx.cardview.widget.CardView
-           android:layout_marginTop="50dp"
-           android:layout_width="200dp"
-           android:layout_height="200dp"
-           app:cardCornerRadius="100dp"
-           android:layout_marginStart="85dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-           <androidx.cardview.widget.CardView
-               android:layout_width="200dp"
-               android:layout_height="200dp"
-               app:cardCornerRadius="250dp"
-               android:layout_gravity="center">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-               <ImageView
-                   android:id="@+id/imageView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:scaleType="centerCrop" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="650dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-           </androidx.cardview.widget.CardView>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="360dp"
+                        android:background="@drawable/backgroundfor_userinformation"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-       </androidx.cardview.widget.CardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_marginTop="100dp">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="50dp"
+                        app:cardCornerRadius="100dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-           <TextView
-               android:id="@+id/student_id_txt"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="100dp"
-               android:layout_marginTop="220dp"
-               android:text="ID"
-               android:textColor="@color/black"
-               android:textSize="25sp" />
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:cardCornerRadius="250dp">
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="10dp"
-               android:layout_marginTop="220dp"
-               android:text="ID:"
-               android:textColorHint="@color/black"
-               android:textColor="@color/black"
-               android:textSize="25sp"
-               android:textStyle="bold"/>
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerCrop" />
 
-           <TextView
-               android:id="@+id/student_name_txt"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="100dp"
-               android:layout_marginTop="260dp"
-               android:text="Name"
-               android:textColor="@color/black"
-               android:textSize="25sp" />
+                        </androidx.cardview.widget.CardView>
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="10dp"
-               android:layout_marginTop="260dp"
-               android:text="Name:"
-               android:textColor="@color/black"
-               android:textSize="25sp"
-               android:textStyle="bold"/>
+                    </androidx.cardview.widget.CardView>
 
-           <TextView
-               android:id="@+id/student_level_txt"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="165dp"
-               android:layout_marginTop="300dp"
-               android:text="Grade Level"
-               android:textColor="@color/black"
-               android:textSize="25sp" />
+                    <TextView
+                        android:id="@+id/student_name_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Name"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/cardView"
+                        app:layout_constraintStart_toStartOf="@+id/cardView"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="10dp"
-               android:layout_marginTop="300dp"
-               android:text="Grade Level:"
-               android:textColor="@color/black"
-               android:textSize="25sp"
-               android:textStyle="bold"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="310dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="25dp"
+                        android:background="@drawable/white_background"
+                        android:elevation="3dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/student_name_txt">
 
-           <TextView
-               android:id="@+id/student_section_txt"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="120dp"
-               android:layout_marginTop="340dp"
-               android:textSize="25sp"
-               android:text="Section"
-               android:textColor="@color/black"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="10dp"
-               android:layout_marginTop="340dp"
-               android:textSize="25sp"
-               android:text="Section: "
-               android:textColor="@color/black"
-               android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="ID:"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
 
-           <TextView
-               android:id="@+id/student_strand_txt"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Strand"
-               android:textColor="@color/black"
-               android:layout_marginTop="380dp"
-               android:layout_marginStart="110dp"
-               android:textSize="25sp" />
+                            <TextView
+                                android:id="@+id/student_id_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="18sp"
+                                android:text="02000287369"
+                                android:textColor="@color/black" />
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Strand:"
-               android:layout_marginTop="380dp"
-               android:layout_marginStart="10dp"
-               android:textSize="25sp"
-               android:textColor="@color/black"
-               android:textStyle="bold"/>
+                        </LinearLayout>
 
-           <TextView
-               android:layout_marginStart="140dp"
-               android:layout_marginTop="420dp"
-               android:id="@+id/student_pass_txt"
-               android:textSize="25sp"
-               android:text="Password"
-               android:textColor="@color/black"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#D9D9D9" />
 
-           <TextView
-               android:layout_marginTop="420dp"
-               android:layout_marginStart="10dp"
-               android:textSize="25sp"
-               android:text="Password:"
-               android:textColor="@color/black"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textStyle="bold"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
 
-       </RelativeLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Grade Level:"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
 
-   </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:id="@+id/student_level_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="18sp"
+                                android:text="11"
+                                android:textColor="@color/black" />
 
-</RelativeLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#D9D9D9" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:text="Section:"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/student_section_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="18sp"
+                                android:text="ICTE101A"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#D9D9D9" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Strand:"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/student_strand_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="IT-MAWD"
+                                android:textSize="18sp"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#D9D9D9" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Password:"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/student_pass_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="18sp"
+                                android:text="*********"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#D9D9D9" />
+
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

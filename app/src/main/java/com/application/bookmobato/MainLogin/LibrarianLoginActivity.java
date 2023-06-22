@@ -18,8 +18,8 @@ public class LibrarianLoginActivity extends AppCompatActivity {
     TextInputEditText input_usernameLibrarian,input_passwordLibrarian;
     Button btn_loginLibrarian;
 
-    String user = "123";
-    String pass =  "admin123";
+    String user = "69";
+    String pass =  "tryme69";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
