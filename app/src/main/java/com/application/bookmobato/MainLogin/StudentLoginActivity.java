@@ -27,7 +27,6 @@ import java.util.Objects;
 
 public class StudentLoginActivity extends AppCompatActivity {
     Button btn_loginStudent;
-    ImageView helper;
     TextInputEditText input_username,input_password;
     TextView register;
 
@@ -37,19 +36,6 @@ public class StudentLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_login);
 
         findID();
-
-        helper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Toast toast = new Toast(getApplicationContext());
-                toast.setDuration(Toast.LENGTH_LONG);
-                View backDoor = getLayoutInflater().inflate(R.layout.toast_message_backdoor, null);
-                toast.setView(backDoor);
-                toast.show();
-                input_username.setText("02000287369");
-                input_password.setText("senpiakoni04");
-            }
-        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +109,6 @@ public class StudentLoginActivity extends AppCompatActivity {
         input_username = findViewById(R.id.input_username);
         input_password = findViewById(R.id.input_password);
         btn_loginStudent = findViewById(R.id.btn_loginStudent);
-        helper = findViewById(R.id.help_btn);
         register = findViewById(R.id.register);
     }
     private void clearField() {

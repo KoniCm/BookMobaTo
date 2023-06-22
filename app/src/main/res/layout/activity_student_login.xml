@@ -22,12 +22,6 @@
             android:orientation="vertical"
             android:padding="15dp">
 
-            <ImageView
-                android:id="@+id/help_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_help_24"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:text="Sign up"
                     android:textStyle="normal|bold"
-                    android:textColor="#029DE8"
+                    android:textColor="#1EAFF4"
                     android:textSize="18sp"/>
 
             </RelativeLayout>
