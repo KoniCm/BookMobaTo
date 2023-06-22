@@ -108,11 +108,7 @@ public class BookDetails extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         databaseReference.child(key).removeValue();
-                        final Toast toast = new Toast(getApplicationContext());
-                        toast.setDuration(Toast.LENGTH_LONG);
-                        View custom = getLayoutInflater().inflate(R.layout.toast_message_delete_book, null);
-                        toast.setView(custom);
-                        toast.show();
+                        Toast.makeText(BookDetails.this, "Successfully, Book Deleted!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(BookDetails.this, BookListActivity.class);
                         startActivity(intent);
                     }

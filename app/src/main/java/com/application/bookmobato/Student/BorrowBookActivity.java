@@ -140,7 +140,7 @@ public class BorrowBookActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(BorrowBookActivity.this, "Successfully, Request pending!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BorrowBookActivity.this, "Successfully, Book borrowed!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(BorrowBookActivity.this, StudentBookListActivity.class);
                             startActivity(intent);
                         }

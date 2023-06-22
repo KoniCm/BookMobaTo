@@ -248,11 +248,7 @@ public class RegisterStudentActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()) {
-                            final Toast toast = new Toast(getApplicationContext());
-                            toast.setDuration(Toast.LENGTH_LONG);
-                            View custom = getLayoutInflater().inflate(R.layout.toast_message_student, null);
-                            toast.setView(custom);
-                            toast.show();
+                            Toast.makeText(RegisterStudentActivity.this, "Successfully, New Student Added!", Toast.LENGTH_SHORT).show();
                             clearTextField();
                             Intent intent = new Intent(RegisterStudentActivity.this, StudentLoginActivity.class);
                             startActivity(intent);

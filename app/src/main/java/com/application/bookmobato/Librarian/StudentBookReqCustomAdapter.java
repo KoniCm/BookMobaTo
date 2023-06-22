@@ -45,7 +45,6 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogConfirmation();
             }
         });
     }
