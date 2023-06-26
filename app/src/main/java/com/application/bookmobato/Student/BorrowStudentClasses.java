@@ -1,7 +1,7 @@
 package com.application.bookmobato.Student;
 
 public class BorrowStudentClasses {
-    String title, name , image, key;
+    String title, name , setBorrowedDate, image, key;
 
     public BorrowStudentClasses() {
 
@@ -16,10 +16,11 @@ public class BorrowStudentClasses {
     }
 
 
-    public BorrowStudentClasses(String title, String name, String image) {
+    public BorrowStudentClasses(String title, String name, String image, String setBorrowedDate) {
         this.title = title;
         this.name = name;
         this.image = image;
+        this.setBorrowedDate = setBorrowedDate;
     }
 
     public String getTitle() {
@@ -30,5 +31,8 @@ public class BorrowStudentClasses {
     }
     public String getImage() {
         return this.image;
+    }
+    public String getSetBorrowedDate() {
+        return setBorrowedDate;
     }
 }

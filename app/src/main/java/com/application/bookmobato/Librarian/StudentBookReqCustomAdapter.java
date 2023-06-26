@@ -41,6 +41,7 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
         BorrowStudentClasses studentBookReq = list.get(position);
         holder.title.setText(studentBookReq.getTitle());
         holder.name.setText(studentBookReq.getName());
+        holder.setBorrowedDate.setText(studentBookReq.getSetBorrowedDate());
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +62,7 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, name;
+        TextView title, name, setBorrowedDate;
         ImageView bookImage;
 
         LinearLayout mainLayout;
@@ -71,6 +72,7 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
 
             title = itemView.findViewById(R.id.studentReq_title);
             name = itemView.findViewById(R.id.studentReq_name);
+            setBorrowedDate = itemView.findViewById(R.id.studentReq_dateBorrowed);
             bookImage = itemView.findViewById(R.id.studentReq_image);
             mainLayout = itemView.findViewById(R.id.studentBookReqLayout);
         }

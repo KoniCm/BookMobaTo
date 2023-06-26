@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,10 +54,12 @@ import java.util.Locale;
 
 public class BorrowBookActivity extends AppCompatActivity {
 
-    String titleX, nameX;
+    String titleX, nameX, setDateBorrowed;
     TextView title;
     ImageView bookImage;
     AutoCompleteTextView name;
+
+    TextInputEditText setDateBorrowing;
     Button addRequestBook;
 
     DatabaseReference databaseReference;
@@ -106,6 +110,8 @@ public class BorrowBookActivity extends AppCompatActivity {
             imgURL = bundle.getString("image");
         }
 
+        datePickerDialogListener();
+
         addRequestBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +124,7 @@ public class BorrowBookActivity extends AppCompatActivity {
         title = findViewById(R.id.title_details);
         bookImage = findViewById(R.id.book_cover_details);
         name = findViewById(R.id.input_name);
+        setDateBorrowing = findViewById(R.id.dateBorrow);
         addRequestBook = findViewById(R.id.addRequestBook);
     }
 
@@ -125,10 +132,10 @@ public class BorrowBookActivity extends AppCompatActivity {
 
         titleX = title.getText().toString();
         nameX = name.getText().toString();
-
+        setDateBorrowed = setDateBorrowing.getText().toString();
         String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 
-        BorrowStudentClasses bookClasses = new BorrowStudentClasses(titleX, nameX, imgURL);
+        BorrowStudentClasses bookClasses = new BorrowStudentClasses(titleX, nameX, imgURL, setDateBorrowed);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("BookInformationReq");
@@ -151,5 +158,25 @@ public class BorrowBookActivity extends AppCompatActivity {
                         Toast.makeText(BorrowBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+    private void datePickerDialogListener() {
+        setDateBorrowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatePickerDialog datePicker = new DatePickerDialog(BorrowBookActivity.this);
+                datePicker.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        setDateBorrowing.setText(year +"-"+ month +"-"+ day);
+
+                    }
+                });
+
+                datePicker.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+                datePicker.show();
+
+            }
+        });
     }
 }
