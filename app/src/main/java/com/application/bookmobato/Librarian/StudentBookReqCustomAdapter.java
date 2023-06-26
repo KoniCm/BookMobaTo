@@ -81,7 +81,7 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
     public void dialogConfirmation() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-        builder.setMessage("Do you want to lend a book?");
+        builder.setMessage("Do you want to lend this book?");
         builder.setCancelable(false);
         builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
             @Override
