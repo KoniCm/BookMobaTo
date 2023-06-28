@@ -15,6 +15,11 @@
         android:theme="@style/Theme.Main"
         tools:targetApi="31">
         <activity
+            android:name=".Librarian.BorrowStudentDetails"
+            android:exported="false"
+            android:label="Student Borrow Information"
+            android:parentActivityName=".Librarian.StudentBookReq"/>
+        <activity
             android:name=".Librarian.StudentBookReq"
             android:exported="false" />
         <activity

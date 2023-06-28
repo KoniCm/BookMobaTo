@@ -3,6 +3,7 @@ package com.application.bookmobato.Librarian;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,12 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(context, BorrowStudentDetails.class);
+                intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
+                intent.putExtra("title", list.get(holder.getAdapterPosition()).getTitle());
+                intent.putExtra("name", list.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("borrowedDate", list.get(holder.getAdapterPosition()).getSetBorrowedDate());
+                context.startActivity(intent);
             }
         });
     }
