@@ -133,7 +133,6 @@ public class BorrowBookActivity extends AppCompatActivity {
         titleX = title.getText().toString();
         nameX = name.getText().toString();
         setDateBorrowed = setDateBorrowing.getText().toString();
-        String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 
         BorrowStudentClasses bookClasses = new BorrowStudentClasses(titleX, nameX, imgURL, setDateBorrowed);
 

@@ -4,23 +4,45 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.application.bookmobato.Librarian.AddingBookActivity;
+import com.application.bookmobato.Librarian.BookClasses;
+import com.application.bookmobato.Librarian.BookListActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class StudentBookDetails extends AppCompatActivity {
 
-    TextView title_input, author_input,genre_input,publish_input,pages_input,description_input;
+    String title, author, genre, publishdate, numpages, description;
+
+    TextView title_input, author_input, genre_input, publish_input, pages_input, description_input;
     ImageView coverDetails;
+
+    String imgURL;
+    Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +53,7 @@ public class StudentBookDetails extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        if(bundle != null) {
+        if (bundle != null) {
             Glide.with(this).load(bundle.getString("image")).into(coverDetails);
             title_input.setText(bundle.getString("title"));
             author_input.setText(bundle.getString("author"));
@@ -39,6 +61,9 @@ public class StudentBookDetails extends AppCompatActivity {
             publish_input.setText(bundle.getString("publishdate"));
             pages_input.setText(bundle.getString("numpages"));
             description_input.setText(bundle.getString("description"));
+
+            // set the imgUrl (String)
+            imgURL = bundle.getString("image");
         }
 
         String title = title_input.getText().toString();
@@ -48,6 +73,7 @@ public class StudentBookDetails extends AppCompatActivity {
             ab.setTitle(title);
         }
     }
+
     private void findID() {
         title_input = findViewById(R.id.title_details);
         author_input = findViewById(R.id.author_details);
@@ -69,9 +95,9 @@ public class StudentBookDetails extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        int id  = item.getItemId();
+        int id = item.getItemId();
 
-        if(id == R.id.favourite) {
+        if (id == R.id.favourite) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             builder.setMessage("Do you want to add this book to your favorites?");
@@ -80,7 +106,7 @@ public class StudentBookDetails extends AppCompatActivity {
 
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(StudentBookDetails.this, "Added to your favorite", Toast.LENGTH_SHORT).show();
+                    uploadData();
                     builder.setCancelable(true);
                 }
             });
@@ -94,5 +120,41 @@ public class StudentBookDetails extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void declarationOfInfo() {
+        title = title_input.getText().toString();
+        author = author_input.getText().toString();
+        genre = publish_input.getText().toString();
+        publishdate = pages_input.getText().toString();
+        numpages = pages_input.getText().toString();
+        description = description_input.getText().toString();
+    }
+
+    private void uploadData() {
+
+        declarationOfInfo();
+
+        BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description,imgURL);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("BookInformationFavorite");
+
+        DatabaseReference childRef = ref.push();
+
+        childRef.setValue(bookClasses)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(StudentBookDetails.this, "Successfully, Book Added to Favorites!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(StudentBookDetails.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
