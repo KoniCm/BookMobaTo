@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/favourite"
+        app:showAsAction="ifRoom"
+        android:title="Favourite"
+        android:icon="@drawable/baseline_favorite_border_24"/>
+</menu>

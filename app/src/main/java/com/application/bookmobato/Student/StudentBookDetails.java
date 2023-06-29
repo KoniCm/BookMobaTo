@@ -1,11 +1,16 @@
 package com.application.bookmobato.Student;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
@@ -49,5 +54,25 @@ public class StudentBookDetails extends AppCompatActivity {
         pages_input = findViewById(R.id.pages_details);
         description_input = findViewById(R.id.description_details);
         coverDetails = findViewById(R.id.book_cover_details);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.favorite_book, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id  = item.getItemId();
+
+        if(id == R.id.favourite) {
+            Toast.makeText(this, "mag trigger ka plsssssss", Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
