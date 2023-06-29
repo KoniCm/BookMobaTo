@@ -2,8 +2,10 @@ package com.application.bookmobato.Student;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -70,7 +72,25 @@ public class StudentBookDetails extends AppCompatActivity {
         int id  = item.getItemId();
 
         if(id == R.id.favourite) {
-            Toast.makeText(this, "mag trigger ka plsssssss", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setMessage("Do you want to add this book to your favorites?");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast.makeText(StudentBookDetails.this, "Added to your favorite", Toast.LENGTH_SHORT).show();
+                    builder.setCancelable(true);
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    builder.setCancelable(true);
+                }
+            });
+            builder.create().show();
         }
 
         return super.onOptionsItemSelected(item);
