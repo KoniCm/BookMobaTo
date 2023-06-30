@@ -78,8 +78,6 @@ public class StudentBookCustomAdapter extends RecyclerView.Adapter<StudentBookCu
                              intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
                              intent.putExtra("title", list.get(holder.getAdapterPosition()).getTitle());
                              context.startActivity(intent);
-                         } else if(id == R.id.favourite) {
-                             addToFavorite();
                          } else if(id == R.id.rate_men) {
                              Toast.makeText(context, "Progressing...", Toast.LENGTH_SHORT).show();
                          }
@@ -121,25 +119,5 @@ public class StudentBookCustomAdapter extends RecyclerView.Adapter<StudentBookCu
             bookImage = itemView.findViewById(R.id.place_holder_display);
             mainLayout = itemView.findViewById(R.id.mainLayout);
         }
-    }
-
-    public void addToFavorite() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        builder.setMessage("Do you favorite this book?");
-        builder.setCancelable(true);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "Successfully, Book added to the favorite!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                builder.setCancelable(false);
-            }
-        });
-        builder.create().show();
     }
 }

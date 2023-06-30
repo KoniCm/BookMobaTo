@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                //intent nato to next activity
                 Intent intent = new Intent(MainActivity.this, MainLoginActivity.class);
                 startActivity(intent);
             }

@@ -41,6 +41,7 @@
             android:exported="false" />
         <activity
             android:name=".Student.StudentBookListActivity"
+            android:parentActivityName=".Dashboard.DashboardStudent"
             android:exported="false" />
         <activity
             android:name=".Dashboard.DashboardLibrarian"
@@ -70,6 +71,7 @@
             android:exported="false" />
         <activity
             android:name=".Librarian.BookDetails"
+            android:parentActivityName=".Dashboard.DashboardLibrarian"
             android:exported="false" />
         <activity
             android:name=".Librarian.UpdateBookActivity"
