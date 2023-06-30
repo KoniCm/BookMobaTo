@@ -4,4 +4,9 @@
     <item android:id="@+id/student_information"
         android:title="Your Account"
         app:showAsAction="never" />
+
+    <item android:id="@+id/favourite_list"
+        android:title="Favorite List"
+        app:showAsAction="never" />
+
 </menu>
