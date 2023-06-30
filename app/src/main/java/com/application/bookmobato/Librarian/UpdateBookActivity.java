@@ -90,14 +90,14 @@ public class UpdateBookActivity extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("BookInformation").child(key);
 
-        images_update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent photo = new Intent(Intent.ACTION_PICK);
-                photo.setType("image/*");
-                activityResultLauncher.launch(photo);
-            }
-        });
+//        images_update.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                Intent photo = new Intent(Intent.ACTION_PICK);
+////                photo.setType("image/*");
+////                activityResultLauncher.launch(photo);
+////            }
+////        });
 
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
