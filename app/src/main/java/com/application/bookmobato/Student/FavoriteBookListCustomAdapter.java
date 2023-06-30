@@ -2,17 +2,33 @@ package com.application.bookmobato.Student;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 import com.application.bookmobato.Librarian.BookClasses;
+import com.application.bookmobato.Librarian.BookDetails;
+import com.application.bookmobato.Librarian.BookListActivity;
+import com.application.bookmobato.Librarian.UpdateBookActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 
 public class FavoriteBookListCustomAdapter extends RecyclerView.Adapter<FavoriteBookListCustomAdapter.MyViewHolder> {
@@ -42,6 +58,27 @@ public class FavoriteBookListCustomAdapter extends RecyclerView.Adapter<Favorite
         holder.publishdate.setText(book.getPublishdate());
         holder.numpages.setText(book.getNumpages());
         holder.description.setText(book.getDescription());
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(context, view);
+                popupMenu.getMenuInflater().inflate(R.menu.delete_onerow, popupMenu.getMenu());
+                popupMenu.show();
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+
+                        if(id == R.id.delete_row) {
+                            Toast.makeText(context, "Processing delete book", Toast.LENGTH_SHORT).show();
+                        }
+
+                        return false;
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -74,6 +111,7 @@ public class FavoriteBookListCustomAdapter extends RecyclerView.Adapter<Favorite
             nameStudent = itemView.findViewById(R.id.student_name_txt);
             bookImage = itemView.findViewById(R.id.place_holder_display);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+
         }
     }
 }

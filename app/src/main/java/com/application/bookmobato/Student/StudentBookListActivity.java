@@ -141,7 +141,6 @@ public class StudentBookListActivity extends AppCompatActivity implements SwipeR
             Intent accountInfo = new Intent(StudentBookListActivity.this, StudentAccountInformationX.class);
             startActivity(accountInfo);
         } else if(id == R.id.favourite_list) {
-            Toast.makeText(this, "Favorite List", Toast.LENGTH_SHORT).show();
             Intent favorite = new Intent(StudentBookListActivity.this, FavoriteBookList.class);
             startActivity(favorite);
         }
