@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:padding="5sp"
     android:id="@+id/mainLayout">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
         android:layout_margin="2dp"
         app:cardElevation="25dp">
 
@@ -21,6 +21,7 @@
             android:padding="5dp">
 
             <ImageView
+                android:layout_marginStart="5dp"
                 android:id="@+id/place_holder_display"
                 android:layout_width="50dp"
                 android:layout_height="90dp"
@@ -84,6 +85,7 @@
                 android:id="@+id/book_pages_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
                 android:layout_marginEnd="2dp"
                 android:text="pages"
                 android:textColor="@color/black"
@@ -107,6 +109,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
                 android:layout_marginEnd="35dp"
                 android:text="pages:"
                 android:textColor="@color/black"

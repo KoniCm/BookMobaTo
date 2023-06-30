@@ -44,6 +44,8 @@ public class UpdateBookActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     StorageReference storageReference;
 
+    String imgURL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +83,9 @@ public class UpdateBookActivity extends AppCompatActivity {
 
             key = bundle.getString("Key");
             oldImageURL = bundle.getString("image");
+
+            // set the imgUrl (String)
+            imgURL = bundle.getString("image");
         }
 
         databaseReference = FirebaseDatabase.getInstance().getReference("BookInformation").child(key);
@@ -97,7 +102,7 @@ public class UpdateBookActivity extends AppCompatActivity {
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveData();
+                updateData();
             }
         });
     }
@@ -131,7 +136,7 @@ public class UpdateBookActivity extends AppCompatActivity {
         update_button = findViewById(R.id.updateBtn);
         images_update = findViewById(R.id.book_cover2);
     }
-    public void saveData(){
+    public void saveImage(){
         AlertDialog.Builder builder = new AlertDialog.Builder(UpdateBookActivity.this);
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
@@ -173,7 +178,7 @@ public class UpdateBookActivity extends AppCompatActivity {
         numpages = updatePages.getText().toString().trim();
         description = updateDescription.getText().toString().trim();
 
-        BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description, imageUrl);
+        BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description, imgURL);
 
         databaseReference.setValue(bookClasses).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
