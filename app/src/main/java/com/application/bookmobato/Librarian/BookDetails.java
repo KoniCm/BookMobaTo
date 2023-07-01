@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -122,5 +125,12 @@ public class BookDetails extends AppCompatActivity {
             }
         });
         builder.create().show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(BookDetails.this, BookListActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

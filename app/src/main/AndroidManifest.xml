@@ -14,78 +14,95 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Main"
         tools:targetApi="31">
+
         <activity
-            android:name=".Student.FavoriteBookList"
+            android:name=".Student.FavoriteBookListActivity"
             android:exported="false"
-            android:label="Favorite Book List"
-            android:parentActivityName=".Student.StudentBookListActivity"/>
+            android:label="Favorite Book List" />
+
         <activity
             android:name=".Librarian.BorrowStudentDetails"
             android:exported="false"
-            android:label="Student Borrow Information"
-            android:parentActivityName=".Librarian.StudentBookReq" />
+            android:label="Student Borrow Information" />
+
         <activity
             android:name=".Librarian.StudentBookReq"
+            android:label="Book Request"
             android:exported="false" />
+
         <activity
             android:name=".Student.StudentAccountInformationX"
             android:exported="false" />
+
         <activity
             android:name=".Student.BorrowBookActivity"
             android:exported="false" />
+
         <activity
             android:name=".Librarian.StudentAccountInformation"
             android:exported="false" />
+
         <activity
             android:name=".Student.StudentBookDetails"
             android:exported="false" />
+
+
         <activity
             android:name=".Student.StudentBookListActivity"
-            android:parentActivityName=".Dashboard.DashboardStudent"
             android:exported="false" />
+
         <activity
             android:name=".Dashboard.DashboardLibrarian"
             android:exported="false" />
+
         <activity
             android:name=".Librarian.StudentActivityList"
             android:exported="false"
-            android:label="Student List"
-            android:parentActivityName=".Librarian.UpdateBookActivity" />
+            android:label="Student List" />
+
         <activity
             android:name=".Student.UpdateStudentActivity"
             android:exported="false" />
+
         <activity
             android:name=".Dashboard.DashboardStudent"
             android:exported="false" />
+
         <activity
             android:name=".MainLogin.StudentLoginActivity"
             android:exported="false" />
+
         <activity
             android:name=".Student.RegisterStudentActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainLogin.LibrarianLoginActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainLogin.MainLoginActivity"
             android:exported="false" />
+
         <activity
             android:name=".Librarian.BookDetails"
-            android:parentActivityName=".Dashboard.DashboardLibrarian"
             android:exported="false" />
+
         <activity
             android:name=".Librarian.UpdateBookActivity"
             android:exported="false"
-            android:label="Update Book"
-            android:parentActivityName=".Librarian.BookListActivity" />
+            android:label="Edit Book" />
+
         <activity
             android:name=".Librarian.AddingBookActivity"
             android:exported="false"
-            android:label="Adding Book"
-            android:parentActivityName=".Librarian.BookListActivity" />
+            android:label="Adding Book" />
+
         <activity
             android:name=".Librarian.BookListActivity"
+            android:label="Book List"
             android:exported="false" />
+
         <activity
             android:name=".SplashMain.MainActivity"
             android:exported="true"
@@ -96,6 +113,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

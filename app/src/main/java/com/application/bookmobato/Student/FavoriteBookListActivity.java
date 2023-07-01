@@ -12,13 +12,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import com.application.bookmobato.Librarian.AddingBookActivity;
 import com.application.bookmobato.Librarian.BookClasses;
 import com.application.bookmobato.Librarian.BookListActivity;
-import com.application.bookmobato.Librarian.LibrarianCustomAdapter;
 import com.application.bookmobato.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FavoriteBookList extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class FavoriteBookListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
@@ -46,14 +43,14 @@ public class FavoriteBookList extends AppCompatActivity implements SwipeRefreshL
 
         findID();
 
-        swipeRefreshLayout.setOnRefreshListener(FavoriteBookList.this);
+        swipeRefreshLayout.setOnRefreshListener(FavoriteBookListActivity.this);
         searchView.clearFocus();
 
-        dataBook = FirebaseDatabase.getInstance().getReference("BookInformation");
+        dataBook = FirebaseDatabase.getInstance().getReference("UserInformation").child("BookInformationFavorite");
 
         list = new ArrayList<>();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(FavoriteBookList.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(FavoriteBookListActivity.this));
         favoriteBookListCustomAdapter = new FavoriteBookListCustomAdapter(this, list);
         recyclerView.setAdapter(favoriteBookListCustomAdapter);
 
@@ -113,12 +110,19 @@ public class FavoriteBookList extends AppCompatActivity implements SwipeRefreshL
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(FavoriteBookList.this, "Refreshed Successfully!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(FavoriteBookList.this, BookListActivity.class);
+                Toast.makeText(FavoriteBookListActivity.this, "Refreshed Successfully!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(FavoriteBookListActivity.this, FavoriteBookListActivity.class);
                 startActivity(intent);
                 favoriteBookListCustomAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, 3000);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(FavoriteBookListActivity.this, StudentBookListActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

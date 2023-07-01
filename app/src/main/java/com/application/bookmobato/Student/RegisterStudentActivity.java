@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.MainLogin.StudentLoginActivity;
 import com.application.bookmobato.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -282,5 +283,12 @@ public class RegisterStudentActivity extends AppCompatActivity {
         pass_input.getText().clear();
         input_Confirmpassword.getText().clear();
         userImage.setImageResource(R.drawable.book_cover);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(RegisterStudentActivity.this, MainLoginActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

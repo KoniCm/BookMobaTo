@@ -14,6 +14,9 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.application.bookmobato.Dashboard.DashboardLibrarian;
+import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.application.bookmobato.Student.BorrowStudentClasses;
 import com.application.bookmobato.Student.StudentClasses;
@@ -109,5 +112,12 @@ public class StudentBookReq extends AppCompatActivity implements SwipeRefreshLay
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, 3000);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(StudentBookReq.this, DashboardLibrarian.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

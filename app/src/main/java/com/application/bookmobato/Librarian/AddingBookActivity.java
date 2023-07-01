@@ -21,6 +21,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -246,5 +249,12 @@ public class AddingBookActivity extends AppCompatActivity {
         publishdate = inputPublishdate.getText().toString();
         numpages = inputNumpages.getText().toString();
         description = inputDescription.getText().toString();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AddingBookActivity.this, BookListActivity    .class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

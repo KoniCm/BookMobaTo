@@ -51,4 +51,11 @@ public class LibrarianLoginActivity extends AppCompatActivity {
         input_passwordLibrarian = findViewById(R.id.input_passwordLibrarian);
         btn_loginLibrarian = findViewById(R.id.btn_loginLibrarian);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(LibrarianLoginActivity.this,MainLoginActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 }

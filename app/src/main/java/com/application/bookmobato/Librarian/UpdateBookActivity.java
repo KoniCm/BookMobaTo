@@ -18,6 +18,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -195,5 +198,12 @@ public class UpdateBookActivity extends AppCompatActivity {
                 Toast.makeText(UpdateBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(UpdateBookActivity.this, BookListActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/clear_text"
-        android:title="Clear"
+        android:title="Clear All Details"
         app:showAsAction="never"/>
 </menu>

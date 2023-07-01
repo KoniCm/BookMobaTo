@@ -2,11 +2,14 @@ package com.application.bookmobato.Librarian;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputEditText;
@@ -40,5 +43,12 @@ public class BorrowStudentDetails extends AppCompatActivity {
         bookCover = findViewById(R.id.book_cover_details);
         nameStudent = findViewById(R.id.input_name);
         borrowedDate = findViewById(R.id.dateBorrow);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(BorrowStudentDetails.this, StudentBookReq.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

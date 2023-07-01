@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.application.bookmobato.Librarian.BookListActivity;
 import com.application.bookmobato.Librarian.StudentActivityList;
+import com.application.bookmobato.Librarian.UpdateBookActivity;
+import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -172,5 +175,12 @@ public class UpdateStudentActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(UpdateStudentActivity.this, StudentActivityList.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

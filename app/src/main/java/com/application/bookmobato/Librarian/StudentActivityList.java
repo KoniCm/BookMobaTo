@@ -12,6 +12,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.application.bookmobato.Dashboard.DashboardLibrarian;
+import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.application.bookmobato.Student.StudentClasses;
 import com.application.bookmobato.Student.StudentCustomAdapter;
@@ -107,5 +111,12 @@ public class StudentActivityList extends AppCompatActivity implements SwipeRefre
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, 3000);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(StudentActivityList.this, DashboardLibrarian.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

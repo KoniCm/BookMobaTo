@@ -15,6 +15,10 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.application.bookmobato.Dashboard.DashboardLibrarian;
+import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -125,5 +129,12 @@ public class BookListActivity extends AppCompatActivity implements SwipeRefreshL
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, 3000);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(BookListActivity.this, DashboardLibrarian.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

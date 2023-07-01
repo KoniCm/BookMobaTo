@@ -4,12 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.application.bookmobato.MainLogin.MainLoginActivity;
+import com.application.bookmobato.MainLogin.StudentLoginActivity;
 import com.application.bookmobato.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -75,5 +78,12 @@ public class StudentAccountInformationX extends AppCompatActivity {
         strand = findViewById(R.id.student_strand_txt);
         pass = findViewById(R.id.student_pass_txt);
         studentImage = findViewById(R.id.imageView);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(StudentAccountInformationX.this, StudentBookListActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

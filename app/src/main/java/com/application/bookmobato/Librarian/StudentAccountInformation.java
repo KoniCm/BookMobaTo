@@ -2,10 +2,13 @@ package com.application.bookmobato.Librarian;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 
@@ -42,5 +45,12 @@ public class StudentAccountInformation extends AppCompatActivity {
         strand = findViewById(R.id.student_strand_txt);
         pass = findViewById(R.id.student_pass_txt);
         studentImage = findViewById(R.id.imageView);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(StudentAccountInformation.this, StudentActivityList.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

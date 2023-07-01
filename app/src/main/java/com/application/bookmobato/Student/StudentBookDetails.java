@@ -22,6 +22,8 @@ import android.widget.Toast;
 import com.application.bookmobato.Librarian.AddingBookActivity;
 import com.application.bookmobato.Librarian.BookClasses;
 import com.application.bookmobato.Librarian.BookListActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
+import com.application.bookmobato.MainLogin.StudentLoginActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -138,7 +140,7 @@ public class StudentBookDetails extends AppCompatActivity {
         BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description,imgURL);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("BookInformationFavorite");
+        DatabaseReference ref = database.getReference("UserInformation").child("BookInformationFavorite");
 
         DatabaseReference childRef = ref.push();
 
@@ -156,5 +158,12 @@ public class StudentBookDetails extends AppCompatActivity {
                         Toast.makeText(StudentBookDetails.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(StudentBookDetails.this, StudentBookListActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

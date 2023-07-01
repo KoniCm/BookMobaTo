@@ -115,4 +115,11 @@ public class StudentLoginActivity extends AppCompatActivity {
         input_username.getText().clear();
         input_password.getText().clear();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(StudentLoginActivity.this,MainLoginActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 }

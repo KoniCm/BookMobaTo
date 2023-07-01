@@ -28,6 +28,8 @@ import android.widget.Toast;
 import com.application.bookmobato.Librarian.AddingBookActivity;
 import com.application.bookmobato.Librarian.BookClasses;
 import com.application.bookmobato.Librarian.BookListActivity;
+import com.application.bookmobato.MainLogin.MainLoginActivity;
+import com.application.bookmobato.MainLogin.StudentLoginActivity;
 import com.application.bookmobato.R;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -177,5 +179,12 @@ public class BorrowBookActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(BorrowBookActivity.this, StudentBookListActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }
