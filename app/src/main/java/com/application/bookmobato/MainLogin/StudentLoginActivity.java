@@ -1,9 +1,11 @@
 package com.application.bookmobato.MainLogin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,7 +30,7 @@ import java.util.Objects;
 public class StudentLoginActivity extends AppCompatActivity {
     Button btn_loginStudent;
     TextInputEditText input_username,input_password;
-    TextView register;
+    TextView register, forgotPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,23 @@ public class StudentLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_login);
 
         findID();
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(StudentLoginActivity.this);
+                builder.setCancelable(false);
+                builder.setTitle("Forget Password?");
+                builder.setMessage("Relax and try to remember your pass.");
+                builder.setPositiveButton("Thanks!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        builder.setCancelable(true);
+                    }
+                });
+                builder.create().show();
+            }
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +129,7 @@ public class StudentLoginActivity extends AppCompatActivity {
         input_password = findViewById(R.id.input_password);
         btn_loginStudent = findViewById(R.id.btn_loginStudent);
         register = findViewById(R.id.register);
+        forgotPass = findViewById(R.id.forgotPass);
     }
     private void clearField() {
         input_username.getText().clear();

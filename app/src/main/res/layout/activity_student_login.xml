@@ -98,6 +98,16 @@
                     android:textColor="#1EAFF4"
                     android:textSize="18sp"/>
 
+                <TextView
+                    android:id="@+id/forgotPass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forgot password?"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"/>
+
             </RelativeLayout>
 
         </LinearLayout>

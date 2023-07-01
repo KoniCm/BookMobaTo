@@ -54,13 +54,12 @@ public class MainLoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("BookMobaTo");
         builder.setMessage("Do you want to exit an app");
         builder.setCancelable(false);
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainLoginActivity.this, "Thank your for using the application", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainLoginActivity.this, "Thank your for using the application -By: Koni", Toast.LENGTH_SHORT).show();
                 finishAffinity();
             }
         });
