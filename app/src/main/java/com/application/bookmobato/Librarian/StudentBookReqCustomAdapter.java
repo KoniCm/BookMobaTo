@@ -17,6 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.application.bookmobato.R;
 import com.application.bookmobato.Student.BorrowStudentClasses;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 
 public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBookReqCustomAdapter.MyViewHolder> {
@@ -44,15 +50,23 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
         holder.name.setText(studentBookReq.getName());
         holder.setBorrowedDate.setText(studentBookReq.getSetBorrowedDate());
 
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+        holder.mainLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onLongClick(View view) {
                 Intent intent = new Intent(context, BorrowStudentDetails.class);
                 intent.putExtra("image", list.get(holder.getAdapterPosition()).getImage());
                 intent.putExtra("title", list.get(holder.getAdapterPosition()).getTitle());
                 intent.putExtra("name", list.get(holder.getAdapterPosition()).getName());
                 intent.putExtra("borrowedDate", list.get(holder.getAdapterPosition()).getSetBorrowedDate());
                 context.startActivity(intent);
+                return false;
+            }
+        });
+
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogConfirmation();
             }
         });
     }
