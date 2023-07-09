@@ -27,7 +27,7 @@
 
         <activity
             android:name=".Librarian.StudentBookReq"
-            android:label="Book Request"
+            android:label="Book Student Request"
             android:exported="false" />
 
         <activity
