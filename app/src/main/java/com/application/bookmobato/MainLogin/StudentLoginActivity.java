@@ -44,7 +44,7 @@ public class StudentLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(StudentLoginActivity.this);
                 builder.setCancelable(false);
-                builder.setTitle("Forget Password?");
+                builder.setTitle("Forgot Password?");
                 builder.setMessage("Relax and try to remember your pass.");
                 builder.setPositiveButton("Thanks!", new DialogInterface.OnClickListener() {
                     @Override
