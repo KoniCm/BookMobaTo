@@ -100,7 +100,7 @@
 
         <activity
             android:name=".Librarian.BookListActivity"
-            android:label="Book List"
+            android:label="@string/app_name"
             android:exported="false" />
 
         <activity

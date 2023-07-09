@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="3sp"
+    android:paddingLeft="10sp"
+    android:paddingRight="10sp"
     android:orientation="vertical"
-    android:padding="2dp"
+
     android:id="@+id/studentMainLayout">
 
     <androidx.cardview.widget.CardView
