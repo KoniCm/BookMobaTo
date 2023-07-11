@@ -33,7 +33,7 @@
         android:id="@+id/search"
         app:iconifiedByDefault="false"
         app:searchHintIcon="@null"
-        app:queryHint="Search book title..."
+        app:queryHint="Search student name..."
         android:focusable="false"
         android:background="@drawable/border"
         app:closeIcon="@drawable/baseline_clear_24"/>

@@ -88,7 +88,7 @@ public class StudentBookReq extends AppCompatActivity implements SwipeRefreshLay
     public void searchList(String text) {
         ArrayList<BorrowStudentClasses> search = new ArrayList<>();
         for (BorrowStudentClasses bookReq : list) {
-            if(bookReq.getTitle().toLowerCase().contains(text.toLowerCase())) {
+            if(bookReq.getName().toLowerCase().contains(text.toLowerCase())) {
                 search.add(bookReq);
             }
         }

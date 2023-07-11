@@ -66,7 +66,7 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogConfirmation();
+                //Make some code ...
             }
         });
     }
@@ -97,27 +97,5 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
             bookImage = itemView.findViewById(R.id.studentReq_image);
             mainLayout = itemView.findViewById(R.id.studentBookReqLayout);
         }
-    }
-
-    public void dialogConfirmation() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        builder.setMessage("Do you want to lend this book?");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "You accept a request from student...", Toast.LENGTH_SHORT).show();
-                builder.setCancelable(true);
-            }
-        });
-        builder.setNegativeButton("Decline", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                builder.setCancelable(true);
-            }
-        });
-
-        builder.create().show();
     }
 }
