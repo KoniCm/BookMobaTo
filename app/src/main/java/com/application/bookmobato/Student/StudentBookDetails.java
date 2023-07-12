@@ -6,11 +6,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,21 +33,29 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class StudentBookDetails extends AppCompatActivity {
 
-    String title, author, genre, publishdate, numpages, description;
+    String title, author, genre, publishdate, numpages, description, studentID;
 
-    TextView title_input, author_input, genre_input, publish_input, pages_input, description_input;
+    TextView title_input, author_input, genre_input, publish_input, pages_input, description_input, id_student;
     ImageView coverDetails;
 
     String imgURL;
     Uri uri;
+
+    DatabaseReference databaseReference;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +63,30 @@ public class StudentBookDetails extends AppCompatActivity {
         setContentView(R.layout.activity_student_book_details);
 
         findID();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("UserInformation");
+
+        sharedPreferences = getSharedPreferences("MyCache", Context.MODE_PRIVATE);
+        String value = sharedPreferences.getString("keyID", "default_value");
+        Query query = databaseReference.orderByChild("id").equalTo(value);
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        id_student.setText((ds.child("id").getValue().toString()));
+                    }
+                } else {
+                    Log.d("TAG", "Data does not exist");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("TAG", "Error: " + databaseError.getMessage());
+            }
+        });
 
         Bundle bundle = getIntent().getExtras();
 
@@ -84,6 +119,7 @@ public class StudentBookDetails extends AppCompatActivity {
         pages_input = findViewById(R.id.pages_details);
         description_input = findViewById(R.id.description_details);
         coverDetails = findViewById(R.id.book_cover_details);
+        id_student = findViewById(R.id.id_fecth);
     }
 
     @Override
@@ -131,16 +167,17 @@ public class StudentBookDetails extends AppCompatActivity {
         publishdate = pages_input.getText().toString();
         numpages = pages_input.getText().toString();
         description = description_input.getText().toString();
+        studentID = id_student.getText().toString();
     }
 
     private void uploadData() {
 
         declarationOfInfo();
 
-        BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description,imgURL);
+        BookClasses bookClasses = new BookClasses(studentID ,title, author, genre, publishdate, numpages, description,imgURL);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("UserInformation").child("BookInformationFavorite");
+        DatabaseReference ref = database.getReference("BookInformationFavorite");
 
         DatabaseReference childRef = ref.push();
 

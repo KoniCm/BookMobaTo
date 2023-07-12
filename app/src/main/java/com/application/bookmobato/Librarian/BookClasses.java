@@ -2,7 +2,7 @@ package com.application.bookmobato.Librarian;
 
 public class BookClasses {
 
-    String title, author, genre, publishdate, numpages, description, image, key;
+    String student_id, title, author, genre, publishdate, numpages, description, image, key;
 
     public BookClasses() {
 
@@ -28,6 +28,21 @@ public class BookClasses {
         this.numpages = numpages;
         this.description = description;
         this.image = image;
+    }
+
+    public BookClasses(String student_id,String title, String author, String genre, String publishdate, String numpages, String description, String image) {
+        this.student_id = student_id;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.publishdate = publishdate;
+        this.numpages = numpages;
+        this.description = description;
+        this.image = image;
+    }
+
+    public String getStudent_id() {
+        return student_id;
     }
 
     public String getTitle() {

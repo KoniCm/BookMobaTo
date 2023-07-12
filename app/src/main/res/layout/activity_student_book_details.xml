@@ -7,6 +7,20 @@
     tools:context=".Student.StudentBookDetails">
 
     <TextView
+        android:id="@+id/id_fecth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="02000287369"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <TextView
         android:id="@+id/title_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
