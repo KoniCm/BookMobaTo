@@ -1,6 +1,5 @@
 package com.application.bookmobato.Librarian;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 import com.application.bookmobato.R;
 import com.application.bookmobato.Student.BorrowStudentClasses;
@@ -63,10 +63,11 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
             }
         });
 
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+        holder.mainLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
-                //Make some code ...
+            public boolean onLongClick(View view) {
+                deleteOneRow();
+                return false;
             }
         });
     }
@@ -97,5 +98,25 @@ public class StudentBookReqCustomAdapter extends RecyclerView.Adapter<StudentBoo
             bookImage = itemView.findViewById(R.id.studentReq_image);
             mainLayout = itemView.findViewById(R.id.studentBookReqLayout);
         }
+    }
+
+    private void deleteOneRow() {
+
+        //Simple Dialog box
+        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(false);
+        builder.setMessage("Do you want to delete this book?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                builder.setCancelable(true);
+            }
+        });
+        builder.create().show();
     }
 }
