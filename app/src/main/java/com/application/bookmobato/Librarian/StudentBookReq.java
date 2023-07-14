@@ -45,6 +45,8 @@ public class StudentBookReq extends AppCompatActivity implements SwipeRefreshLay
         setContentView(R.layout.activity_student_book_req);
 
         findID();
+        swipeRefreshLayout.setOnRefreshListener(StudentBookReq.this);
+        searchView.clearFocus();
 
         studentBookReq = FirebaseDatabase.getInstance().getReference("BookInformationReq");
 

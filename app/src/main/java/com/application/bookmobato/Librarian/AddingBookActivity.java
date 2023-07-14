@@ -21,9 +21,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
-import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,8 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import java.text.DateFormat;
-import java.util.Calendar;
 
 public class AddingBookActivity extends AppCompatActivity {
 
@@ -91,20 +86,36 @@ public class AddingBookActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                declarationOfInfo();
+                AssigningValue();
 
                 if(isInputEmpty(title,author,genre,publishdate,numpages,description)) {
                     Toast.makeText(AddingBookActivity.this, "Fill the empty field", Toast.LENGTH_SHORT).show();
                 } else if(upload_cover == null) {
                     Toast.makeText(AddingBookActivity.this, "Please select a image", Toast.LENGTH_SHORT).show();
                 } else {
-                    InsertData();
+                    AddingImageAndValue();
                 }
             }
         });
     }
 
-    private void InsertData() {
+    private boolean isInputEmpty(String... inputs) {
+        for (String input : inputs) {
+            if (input.isEmpty()) { return true; }
+        }
+        return false;
+    }
+
+    private void AssigningValue() {
+        title = inputTitle.getText().toString();
+        author = inputAuthor.getText().toString();
+        genre = inputGenre.getText().toString();
+        publishdate = inputPublishdate.getText().toString();
+        numpages = inputNumpages.getText().toString();
+        description = inputDescription.getText().toString();
+    }
+
+    private void AddingImageAndValue() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(AddingBookActivity.this);
         builder.setCancelable(false);
@@ -132,6 +143,7 @@ public class AddingBookActivity extends AppCompatActivity {
                     Toast.makeText(AddingBookActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                 }
             });
+
         } catch (Exception e) {
             Toast.makeText(this, "Please select a book cover", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
@@ -139,7 +151,7 @@ public class AddingBookActivity extends AppCompatActivity {
     }
     private void uploadData() {
 
-        declarationOfInfo();
+        AssigningValue();
 
         BookClasses bookClasses = new BookClasses(title, author, genre, publishdate, numpages, description,imgURL);
 
@@ -185,21 +197,6 @@ public class AddingBookActivity extends AppCompatActivity {
             }
         });
     }
-    private boolean isInputEmpty(String... inputs) {
-        for (String input : inputs) {
-            if (input.isEmpty()) { return true; }
-        }
-        return false;
-    }
-    private void clearTextField() {
-        inputTitle.getText().clear();
-        inputAuthor.getText().clear();
-        inputGenre.getText().clear();
-        inputPublishdate.getText().clear();
-        inputNumpages.getText().clear();
-        inputDescription.getText().clear();
-        upload_cover.setImageResource(R.drawable.book_cover);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -221,7 +218,7 @@ public class AddingBookActivity extends AppCompatActivity {
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(AddingBookActivity.this, "Clear text field success!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddingBookActivity.this, "Successfully, Clear text field!", Toast.LENGTH_SHORT).show();
                     clearTextField();
                 }
             });
@@ -229,6 +226,16 @@ public class AddingBookActivity extends AppCompatActivity {
             builder.create().show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void clearTextField() {
+        inputTitle.getText().clear();
+        inputAuthor.getText().clear();
+        inputGenre.getText().clear();
+        inputPublishdate.getText().clear();
+        inputNumpages.getText().clear();
+        inputDescription.getText().clear();
+        upload_cover.setImageResource(R.drawable.book_cover);
     }
 
     private void findID() {
@@ -242,18 +249,9 @@ public class AddingBookActivity extends AppCompatActivity {
         upload_cover = findViewById(R.id.upload_cover);
     }
 
-    private void declarationOfInfo() {
-        title = inputTitle.getText().toString();
-        author = inputAuthor.getText().toString();
-        genre = inputGenre.getText().toString();
-        publishdate = inputPublishdate.getText().toString();
-        numpages = inputNumpages.getText().toString();
-        description = inputDescription.getText().toString();
-    }
-
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(AddingBookActivity.this, BookListActivity    .class);
+        Intent intent = new Intent(AddingBookActivity.this, BookListActivity.class);
         startActivity(intent);
         super.onBackPressed();
     }

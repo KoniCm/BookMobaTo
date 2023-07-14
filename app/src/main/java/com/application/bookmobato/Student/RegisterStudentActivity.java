@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.application.bookmobato.MainLogin.MainLoginActivity;
@@ -48,6 +49,8 @@ public class RegisterStudentActivity extends AppCompatActivity {
     String id,name,section,strand,gradeLevel,pass,confirmPass;
     AutoCompleteTextView strand_input,section_input,level_input;
     TextInputEditText id_input, name_input, pass_input,input_Confirmpassword;
+
+    TextView login;
     Button addStudent_btn;
 
     String[] strandList = {"IT-MAWD", "ABM", "CULINARY", "TOPER", "HUMSS"};
@@ -92,6 +95,14 @@ public class RegisterStudentActivity extends AppCompatActivity {
                 Intent photo = new Intent(Intent.ACTION_PICK);
                 photo.setType("image/*");
                 activityResultLauncher.launch(photo);
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterStudentActivity.this,StudentLoginActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -191,6 +202,7 @@ public class RegisterStudentActivity extends AppCompatActivity {
         addStudent_btn = findViewById(R.id.btn_loginStudent);
         pass_input = findViewById(R.id.input_password);
         input_Confirmpassword = findViewById(R.id.input_Confirmpassword);
+        login = findViewById(R.id.loginAccount);
     }
 
     private boolean isInputEmpty(String... inputs) {
