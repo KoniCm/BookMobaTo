@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Register"
+                    android:text="Sign Up"
                     android:textColor="@color/black"
                     android:textSize="40sp" />
 
@@ -49,7 +49,7 @@
                         android:layout_gravity="center">
 
                         <ImageView
-                            android:src="@drawable/insert_image"
+                            android:src="@drawable/baseline_add_a_photo_24"
                             android:id="@+id/userImage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
