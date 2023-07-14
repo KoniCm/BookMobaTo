@@ -18,23 +18,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.application.bookmobato.Dashboard.DashboardLibrarian;
-import com.application.bookmobato.MainLogin.LibrarianLoginActivity;
-import com.application.bookmobato.MainLogin.MainLoginActivity;
 import com.application.bookmobato.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
 import java.util.ArrayList;
 
 public class BookListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
@@ -45,9 +37,6 @@ public class BookListActivity extends AppCompatActivity implements SwipeRefreshL
     DatabaseReference dataBook;
     LibrarianCustomAdapter librarianCustomAdapter;
     SearchView searchView;
-
-    String key = "";
-    String imageUrl = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
