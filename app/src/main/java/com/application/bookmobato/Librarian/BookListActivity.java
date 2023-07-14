@@ -168,6 +168,7 @@ public class BookListActivity extends AppCompatActivity implements SwipeRefreshL
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("BookInformation");
+
                 databaseReference.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
