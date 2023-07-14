@@ -92,7 +92,9 @@ public class AddingBookActivity extends AppCompatActivity {
                     Toast.makeText(AddingBookActivity.this, "Fill the empty field", Toast.LENGTH_SHORT).show();
                 } else if(upload_cover == null) {
                     Toast.makeText(AddingBookActivity.this, "Please select a image", Toast.LENGTH_SHORT).show();
-                } else {
+                }else if(title.length() > 30) {
+                    Toast.makeText(AddingBookActivity.this, "Title has a maximum capacity of 30 characters only! Please try again.", Toast.LENGTH_SHORT).show();
+                }else {
                     AddingImageAndValue();
                 }
             }

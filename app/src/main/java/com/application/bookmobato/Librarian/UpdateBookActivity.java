@@ -113,8 +113,6 @@ public class UpdateBookActivity extends AppCompatActivity {
         databaseReference.setValue(bookClasses).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL);
-                reference.delete();
                 Toast.makeText(UpdateBookActivity.this, "Successfully, Book Updated!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(UpdateBookActivity.this, BookListActivity.class);
                 startActivity(intent);
