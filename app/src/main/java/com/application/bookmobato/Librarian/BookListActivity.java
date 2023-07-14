@@ -187,5 +187,4 @@ public class BookListActivity extends AppCompatActivity implements SwipeRefreshL
         });
         builder.create().show();
     }
-
 }
