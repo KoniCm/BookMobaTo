@@ -154,6 +154,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:endIconMode="password_toggle"
+                    android:layout_marginTop="10dp"
                     app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -204,6 +205,7 @@
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginStart="50dp"
                         android:text="Already have an Account?"/>
 
                     <TextView
@@ -213,6 +215,7 @@
                         android:text="Login"
                         android:textColor="#1EAFF4"
                         android:textSize="15sp"
+                        android:textStyle="normal|bold"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="15dp"/>
 
