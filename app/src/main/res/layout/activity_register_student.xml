@@ -48,7 +48,7 @@
                         app:cardCornerRadius="250dp">
 
                         <ImageView
-                            android:src="@drawable/add_photo"
+                            android:src="@drawable/default_prof"
                             android:id="@+id/userImage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
